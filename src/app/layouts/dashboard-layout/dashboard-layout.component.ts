@@ -7,10 +7,15 @@ import { Layouts } from "../../models/layout.model";
   styleUrls: ['./dashboard-layout.component.scss']
 })
 export class DashboardLayoutComponent implements OnInit {
+
   public Layouts = Layouts;
+
+  showFiller = false;
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

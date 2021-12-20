@@ -1,9 +1,26 @@
-<app-header [layout]="Layouts.dashboard"></app-header>
 
-<p>dashboard-layout works!</p>
 
-<app-sidebar></app-sidebar>
+<app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
 
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
 
-<app-footer></app-footer>
+  <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 250px; height: 100vh">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="height: 100vh">
+
+    <p>dashboard-layout works!</p>
+
+    <app-sidebar></app-sidebar>
+
+    <router-outlet></router-outlet>
+
+    <app-footer></app-footer>
+  </div>
+
+</mat-drawer-container>
