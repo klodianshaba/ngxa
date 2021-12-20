@@ -1,16 +1,21 @@
 
 
 <mat-toolbar color="accent">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button (click)="onClickSibeBar()" *ngIf="layoutService.isDashboard(this.layout)" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <button mat-flat-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    Animations
-  </button>
-  <button mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    Dashboard
+ <span class="me-2 title" (click)="onTitle()">
+   Animations
+ </span>
+  <button (click)="onExamples()" mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    Examples
   </button>
   <span class="example-spacer"></span>
-  &copy; <span>dev.klodian</span>
+  <a href="https://github.com/klodianshaba/angular-animations" target="_blank" mat-icon-button>
+    <img src="./assets/images/GitHub-Mark-Light-32px.png">
+  </a>
+  <span class="ms-2">
+   <span>&copy;dev.klodian</span>
+  </span>
 </mat-toolbar>
 
