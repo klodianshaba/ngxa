@@ -1,0 +1,12 @@
+.sidebar-container{
+  .item{
+    width: 100%;
+    padding: 10px 25px;
+    cursor: pointer;
+    &:hover{
+      color: white;
+      background-color: #ff4081;
+    }
+  }
+
+}
