@@ -1,0 +1,17 @@
+@import "src/app/scss/variables";
+//@import "node_modules/bootstrap/scss/bootstrap";
+.cards-container{
+  width: 100%;
+}
+
+.card {
+  margin: map-get($space, margin);
+  width:calc( 25% - 30px);
+}
+
+.header-image {
+  background-size: cover;
+  //background-color: $gray-100;
+  background-color: tint-color(blue, 20%);
+
+}

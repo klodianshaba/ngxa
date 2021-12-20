@@ -1,0 +1,17 @@
+@import "src/app/scss/variables";
+
+.sidenav{
+  width: 260px;
+  box-shadow: 1px 0px 8px 0px rgba(0,0,0,0.20);
+  -webkit-box-shadow: 1px 0px 8px 0px rgba(0,0,0,0.20);
+  -moz-box-shadow: 1px 0px 8px 0px rgba(0,0,0,0.20);
+  border-right: none;
+}
+.sidenav-content{
+  height: calc(100vh - 64px);
+}
+
+.card-content, .footer-content{
+  margin: map-get($space , margin);
+}
+

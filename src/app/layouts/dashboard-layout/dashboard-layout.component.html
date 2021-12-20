@@ -1,26 +1,16 @@
 
-
 <app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
-
 <mat-drawer-container class="example-container" autosize>
-
-  <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 250px; height: 100vh">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
-
-  <div class="example-sidenav-content" style="height: 100vh">
-
-    <p>dashboard-layout works!</p>
-
+  <mat-drawer #drawer class="sidenav py-4" mode="side" opened>
     <app-sidebar></app-sidebar>
-
-    <router-outlet></router-outlet>
-
-    <app-footer></app-footer>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <app-description></app-description>
+    <div class="card-content">
+      <router-outlet></router-outlet>
+      <div class="footer-content">
+        <app-footer></app-footer>
+      </div>
+    </div>
   </div>
-
 </mat-drawer-container>
