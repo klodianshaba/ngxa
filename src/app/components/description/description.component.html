@@ -1,12 +1,12 @@
 <div class="description-container d-flex flex-column align-items-center justify-content-center">
 
-  <span class="fs-1 fw-bold">Angular Animation Constants</span>
+  <span class="fs-1 fw-bold"  [@zoomIn]="{value:'', params:{timings:'300ms'}}">Angular Animations Library</span>
 
-  <div class="pt-5 pb-5">
-    <span class="fs-5">Animation Constants helps to build triggers quickly in Angular</span>
+  <div class="pt-5 pb-5" [@bounceIn]="{value:'', params:{timings:'800ms'}}">
+    <span class="fs-5">This library helps you to add animations quickly in your angular application</span>
   </div>
 
-  <button mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <button [@zoomInClick]="status" (click)="animate()" mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     Examples
   </button>
 

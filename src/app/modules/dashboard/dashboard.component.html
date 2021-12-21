@@ -1,5 +1,5 @@
 <div class="cards-container">
-<mat-card class="card d-inline-block" *ngFor="let i of [1 ,2 ,3 ,4,5,6]">
+<mat-card (click)="onClick()" [@bounceIn]="{value:ani, params:{timings:'800ms'}}" class="card d-inline-block" *ngFor="let i of [1 ,2 ,3 ,4,5,6]">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
     <mat-card-title>Shiba Inu</mat-card-title>
