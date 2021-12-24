@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {zoomIn, zoomInClick} from "../../library/zoomIn";
-import {bounceIn} from "../../library";
+import {bounceIn,zoomIn} from "../../wrapper";
 
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss'],
   animations: [
-    zoomIn(),
+    zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
     bounceIn(),
-    zoomInClick(),
   ]
 })
 export class DescriptionComponent implements OnInit {
 
-  status: boolean = false;
+  status: boolean = true;
   constructor() { }
 
   ngOnInit(): void {

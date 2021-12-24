@@ -1,12 +1,13 @@
 <div class="description-container d-flex flex-column align-items-center justify-content-center">
 
-  <span class="fs-1 fw-bold"  [@zoomIn]="{value:'', params:{timings:'300ms'}}">Angular Animations Library</span>
+  <span class="fs-1 fw-bold" [@zoomIn]="{value:''}">Angular Animations Wrapper</span>
 
-  <div class="pt-5 pb-5" [@bounceIn]="{value:'', params:{timings:'800ms'}}">
-    <span class="fs-5">This library helps you to add animations quickly in your angular application</span>
+  <div class="pt-5 pb-5" [@zoomIn]="{value:status, params:{}}">
+    <div [@bounceIn]="{value:'', params:{timings:'800ms'}}" >fdgdfg</div>
+    <span class="fs-5">This wrapper helps you to implement animations easy in your angular application</span>
   </div>
 
-  <button [@zoomInClick]="status" (click)="animate()" mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <button (click)="animate()" mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     Examples
   </button>
 

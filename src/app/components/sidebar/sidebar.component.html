@@ -1,8 +1,4 @@
-<div class="sidebar-container">
-  <div matRipple class="item">BounceIN</div>
-  <div matRipple class="item">BounceIN</div>
-  <div matRipple class="item">BounceIN</div>
-  <div matRipple class="item">BounceIN</div>
-  <div matRipple class="item">BounceIN</div>
-  <div matRipple class="item">BounceIN</div>
+<div class="sidebar-container" [@list]="7" >
+  <div [@bounceIn]="{value:'', params:{timings:'800ms'}}" *ngFor="let i of [0,1,2,3,4,5,6]" matRipple class="item">BounceIN</div>
 </div>
+

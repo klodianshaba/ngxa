@@ -1,10 +1,10 @@
 
 <app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="sidenav py-4" mode="side" opened>
+<mat-sidenav-container class="example-container" autosize >
+  <mat-sidenav  #drawer class="sidenav py-4" mode="side" opened>
     <app-sidebar></app-sidebar>
-  </mat-drawer>
-  <div class="sidenav-content">
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
     <app-description></app-description>
     <div class="card-content">
       <router-outlet></router-outlet>
@@ -12,5 +12,6 @@
         <app-footer></app-footer>
       </div>
     </div>
-  </div>
-</mat-drawer-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

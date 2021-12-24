@@ -2,11 +2,15 @@ import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router } from "@angular/router";
 import {Layouts} from "../../models/layout.model";
 import {LayoutService} from "../../services/layout.service";
+import {zoomIn} from "../../wrapper/animations/zoomIn";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  animations:[
+    zoomIn()
+  ]
 })
 export class HeaderComponent implements OnInit {
 

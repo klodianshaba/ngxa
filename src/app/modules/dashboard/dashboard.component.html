@@ -1,21 +1,16 @@
 <div class="cards-container">
-<mat-card (click)="onClick()" [@bounceIn]="{value:ani, params:{timings:'800ms'}}" class="card d-inline-block" *ngFor="let i of [1 ,2 ,3 ,4,5,6]">
+  <div [@list]="10">
+<mat-card (click)="onClick()" [@bounceIn]="{value:ani, params:{timings:'500ms'}}" class="card d-inline-block" *ngFor="let i of [1 ,2 ,3 ,4,5,6,7,8,9,10]">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
     <mat-card-title>Shiba Inu</mat-card-title>
     <mat-card-subtitle>Dog Breed</mat-card-subtitle>
   </mat-card-header>
-  <img src="https://via.placeholder.com/150/92c952" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
+  <mat-card-content></mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="accent">LIKE</button>
-    <button mat-stroked-button>SHARE</button>
+    <button mat-raised-button color="accent">Animate It</button>
+    <button mat-stroked-button>Details</button>
   </mat-card-actions>
 </mat-card>
+  </div>
 </div>
