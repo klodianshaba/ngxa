@@ -1,28 +1,12 @@
 import {AnimationConfig, DefaultAnimationConfig, NestedAnimations} from "./common";
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationAnimateMetadata,
-  AnimationOptions,
-  AnimationReferenceMetadata,
-  AnimationTransitionMetadata,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  transition,
-  trigger,
-  useAnimation
-} from "@angular/animations";
-import {zoomInKeyframes} from "./zoomIn";
+import {animateChild, AnimationOptions, AnimationReferenceMetadata, AnimationTransitionMetadata, AnimationTriggerMetadata, group, query, transition, trigger, useAnimation} from "@angular/animations";
 
 export function buildTrigger(animationReferenceMetadata: AnimationReferenceMetadata ,config: Partial<AnimationConfig> = DefaultAnimationConfig, options?: AnimationOptions | null): AnimationTriggerMetadata {
   let configs: AnimationConfig = {...DefaultAnimationConfig, ...config };
-  return trigger(configs.triggerName, buildTransitions(animationReferenceMetadata,configs,options));
+  return trigger(configs.triggerName, buildTransition(animationReferenceMetadata,configs,options));
 }
 
-export function buildTransitions( animationReferenceMetadata: AnimationReferenceMetadata, config: AnimationConfig, options?: AnimationOptions | null): AnimationTransitionMetadata[]{
+export function buildTransition( animationReferenceMetadata: AnimationReferenceMetadata, config: AnimationConfig, options?: AnimationOptions | null): AnimationTransitionMetadata[]{
   return [
     transition(
       includeStateChangeExpressions(config.stateChangeExpressions),
@@ -33,7 +17,7 @@ export function buildTransitions( animationReferenceMetadata: AnimationReference
 }
 
 export function includeOptions(config: AnimationConfig, options?: AnimationOptions | null): AnimationOptions | null{
-  return  {delay:options?.delay , params: {...{delay: config.delay, timings: config.timings}, ...options?.params } }
+  return  {delay:options?.delay , params: {...options?.params, ...config} }
 }
 
 export function includeStateChangeExpressions(stateChangeExpressions: AnimationConfig['stateChangeExpressions']): string{
