@@ -18,23 +18,17 @@ export type StateChangeExpressionsType = keyof typeof StateChangeExpressions;
 
 export type NestedAnimationsType = keyof typeof NestedAnimations;
 
-// constants
+// constant
 
-export const DefaultNestedAnimations: Extract<NestedAnimationsType ,'parallel'>  = 'parallel';
-
-export const DefaultStateChangeExpression: Extract<StateChangeExpressionsType,'onEnter'>  = 'onEnter';
-
-export const DefaultTimings: string = '700ms';
-
-export let DefaultAnimationConfig: AnimationConfig = {triggerName:'animate', stateChangeExpression: StateChangeExpressions.onEnter, delay: 0 , timings: '300ms', nestedAnimations: 'parallel'}
+export let DefaultAnimationConfig: AnimationConfig = {triggerName:'animation', stateChangeExpressions: StateChangeExpressions.onEnter, delay: '0ms' , timings: '300ms', nestedAnimations: NestedAnimations.parallel}
 
 // interfaces
 
 export interface AnimationConfig{
   triggerName: string;
-  stateChangeExpression: StateChangeExpressionsType | StateChangeExpressionsType[] | string | string[];
-  delay: number;
-  timings: string;
+  stateChangeExpressions: string | string[];
+  delay: string;
+  timings: string | number;
   nestedAnimations: NestedAnimationsType;
 }
 
