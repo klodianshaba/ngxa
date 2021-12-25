@@ -3,11 +3,9 @@ import {AnimationConfig} from "../common";
 import {buildTrigger} from "../base";
 
 export const zoomInKeyframes = [
-  style({ visibility: 'visible', transform: 'translate3d(0, 200px, 0)', easing: 'ease', offset: 0 }),
-  style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+  style({opacity:0,transform: 'scale3d(0.3, 0.3, 0.3)', offset: 0}),
+  style({opacity:1, transform: 'none', offset: 1})
 ];
-
-
 
 export function zoomIn(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
   return buildTrigger(
