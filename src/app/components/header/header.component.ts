@@ -24,10 +24,7 @@ export class HeaderComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    console.log(this.layout);
-    console.log(this.layoutService.isDashboard(this.layout));
-  }
+  ngOnInit(): void {}
 
   onTitle(): void {
     this.router.navigate(['landing']).then();

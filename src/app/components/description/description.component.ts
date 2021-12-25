@@ -7,7 +7,7 @@ import {bounceIn,zoomIn} from "../../wrapper";
   styleUrls: ['./description.component.scss'],
   animations: [
     zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
-    bounceIn(),
+    bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
 export class DescriptionComponent implements OnInit {

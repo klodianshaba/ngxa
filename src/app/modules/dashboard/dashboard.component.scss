@@ -2,14 +2,11 @@
 .cards-container{
   width: 100%;
 }
-
 .card {
   margin: map-get($space, margin);
   width:calc( 16.6% - 30px);
 }
-
 .header-image {
   background-size: cover;
   background-color: lightgray;
-
 }
