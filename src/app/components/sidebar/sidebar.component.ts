@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {list, zoomIn, bounceIn} from "../../wrapper";
+import {zoomIn, bounceIn} from "../../wrapper";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +7,6 @@ import {list, zoomIn, bounceIn} from "../../wrapper";
   styleUrls: ['./sidebar.component.scss'],
   animations: [
     zoomIn(),
-    list(),
     bounceIn({stateChangeExpressions:[':enter', '0 => 1']})
   ]
 })

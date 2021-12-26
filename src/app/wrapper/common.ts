@@ -1,5 +1,7 @@
 // enums
 
+import {AnimationOptions, AnimationReferenceMetadata} from "@angular/animations";
+
 export enum NestedAnimations{
   parallel = 'parallel',
   before = 'before',
@@ -30,6 +32,17 @@ export interface AnimationConfig{
   delay: string;
   timings: string | number;
   nestedAnimations: NestedAnimationsType;
+}
+
+export interface TransitionConfig{
+  animationReferenceMetadata: AnimationReferenceMetadata;
+  animationConfig?: Partial<AnimationConfig>;
+  animationOptions?: AnimationOptions | null;
+}
+
+export interface BuildTriggerConfig{
+  triggerName: string;
+  transitions: TransitionConfig | TransitionConfig[];
 }
 
 

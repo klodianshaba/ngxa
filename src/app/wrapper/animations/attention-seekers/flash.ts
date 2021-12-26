@@ -1,18 +1,29 @@
-import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE} from "@angular/animations";
+import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationOptions} from "@angular/animations";
 import {buildTrigger} from "../../base";
-import {AnimationConfig} from "../../common";
+import {AnimationConfig, TransitionConfig} from "../../common";
 
 export const flashKeyframes = [
-  style({ visibility: AUTO_STYLE, opacity: 0, easing: 'ease', offset: 0 }),
-  style({ opacity: 1, easing: 'ease', offset: 0.25 }),
-  style({ opacity: 0, easing: 'ease', offset: 0.5 }),
-  style({ opacity: 1, easing: 'ease', offset: 0.75 }),
-  style({ opacity: 0, easing: 'ease', offset: 1 })
+  style({ visibility: AUTO_STYLE, opacity: 1, offset: 0 }),
+  style({ opacity: 0, easing: 'ease', offset: 0.25 }),
+  style({ opacity: 1, easing: 'ease', offset: 0.5 }),
+  style({ opacity: 0, easing: 'ease', offset: 0.75 }),
+  style({ opacity: 1, easing: 'ease', offset: 1 })
 ];
+export const flashAnimation: AnimationReferenceMetadata =  animation( animate('{{timings}} {{delay}}', keyframes(flashKeyframes) ));
+
+export const flashTransition = (animationConfig?: Partial<AnimationConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
+  return {
+    animationReferenceMetadata: flashAnimation,
+    animationConfig,
+    animationOptions
+  }
+}
 
 export function flash(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
   return buildTrigger(
-    animation( animate('{{timings}} {{delay}}', keyframes(flashKeyframes) )),
-    {...{triggerName: 'flash'},...config}
+    {
+      triggerName: (config && config.triggerName) || 'flash',
+      transitions: flashTransition(config)
+    }
   )
 }

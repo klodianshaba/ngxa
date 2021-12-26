@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Layouts } from "../../models/layout.model";
-import {list, zoomIn} from "../../wrapper";
+import {zoomIn} from "../../wrapper";
 import {
   animate,
   AnimationTriggerMetadata,
@@ -21,7 +21,6 @@ import {
   styleUrls: ['./dashboard-layout.component.scss'],
   animations: [
     zoomIn(),
-    list(),
   ]
 })
 export class DashboardLayoutComponent implements OnInit {

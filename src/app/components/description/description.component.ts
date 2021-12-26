@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {bounceIn,zoomIn} from "../../wrapper";
+import {swing} from "../../wrapper/animations/attention-seekers";
 
 @Component({
   selector: 'app-description',
@@ -8,6 +9,7 @@ import {bounceIn,zoomIn} from "../../wrapper";
   animations: [
     zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
     bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
+    swing({stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
 export class DescriptionComponent implements OnInit {

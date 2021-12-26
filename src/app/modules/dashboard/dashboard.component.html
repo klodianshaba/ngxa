@@ -1,31 +1,37 @@
 <div class="cards-container">
-  <div [@list]="2">
-    <div class="card d-inline-block" [@bounceIn]="animations[0]">
-      <app-card [animation]="animations[0]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@zoomIn]="animations[1]">
-      <app-card [animation]="animations[1]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@swing]="animations[2]">
-      <app-card [animation]="animations[2]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@wobble]="animations[3]">
-      <app-card [animation]="animations[3]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@bounce]="animations[4]">
-      <app-card [animation]="animations[4]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@flash]="animations[5]">
-      <app-card [animation]="animations[5]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@headShake]="animations[6]">
-      <app-card [animation]="animations[6]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@heartBeat]="animations[7]">
-      <app-card [animation]="animations[7]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
-    <div class="card d-inline-block" [@jello]="animations[8]">
-      <app-card [animation]="animations[8]" (onAnimate)="onAnimateIt($event)"></app-card>
-    </div>
+  <div [@listAnimationChild]="animations.length">
+        <div class="card d-inline-block" [@animations]="animation" *ngFor="let animation of animations">
+          <app-card [animation]="animation" (onAnimate)="onAnimateIt($event)"></app-card>
+        </div>
+<!--    <div class="card d-inline-block" [@animations]="animations[1]">-->
+<!--      <app-card [animation]="animations[1]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@bounceIn]="animations[0]">-->
+<!--      <app-card [animation]="animations[0]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@zoomIn]="animations[1]">-->
+<!--      <app-card [animation]="animations[1]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@swing]="animations[2]">-->
+<!--      <app-card [animation]="animations[2]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@wobble]="animations[3]">-->
+<!--      <app-card [animation]="animations[3]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@bounce]="animations[4]">-->
+<!--      <app-card [animation]="animations[4]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@flash]="animations[5]">-->
+<!--      <app-card [animation]="animations[5]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@headShake]="animations[6]">-->
+<!--      <app-card [animation]="animations[6]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@heartBeat]="animations[7]">-->
+<!--      <app-card [animation]="animations[7]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
+<!--    <div class="card d-inline-block" [@jello]="animations[8]">-->
+<!--      <app-card [animation]="animations[8]" (onAnimate)="onAnimateIt($event)"></app-card>-->
+<!--    </div>-->
   </div>
 </div>

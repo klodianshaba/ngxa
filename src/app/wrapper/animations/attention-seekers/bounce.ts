@@ -1,10 +1,10 @@
-import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE} from "@angular/animations";
+import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationOptions} from "@angular/animations";
 import {buildTrigger} from "../../base";
-import {AnimationConfig} from "../../common";
+import {AnimationConfig, TransitionConfig} from "../../common";
 
 export const bounceKeyframes = [
-  style({ opacity: 0, visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
-  style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.2 }),
+  style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
+  style({ transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.2 }),
   style({ transform: 'translate3d(0, -30px, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.4 }),
   style({ transform: 'translate3d(0, -30px, 0)', easing: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)', offset: 0.43 }),
   style({ transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)', offset: 0.53 }),
@@ -14,9 +14,21 @@ export const bounceKeyframes = [
   style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
 ];
 
+export const bounceAnimation: AnimationReferenceMetadata = animation( animate('{{timings}} {{delay}}', keyframes(bounceKeyframes) ));
+
+export const bounceTransition = (animationConfig?: Partial<AnimationConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
+  return {
+    animationReferenceMetadata: bounceAnimation,
+    animationConfig,
+    animationOptions
+  }
+}
+
 export function bounce(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
   return buildTrigger(
-    animation( animate('{{timings}} {{delay}}', keyframes(bounceKeyframes) )),
-    {...{triggerName: 'bounce'},...config}
+    {
+      triggerName: (config && config.triggerName) || 'bounce' ,
+      transitions: bounceTransition(config)
+    }
   )
 }

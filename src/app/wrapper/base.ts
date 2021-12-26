@@ -1,19 +1,20 @@
-import {AnimationConfig, DefaultAnimationConfig, NestedAnimations} from "./common";
+import {AnimationConfig, BuildTriggerConfig, DefaultAnimationConfig, NestedAnimations} from "./common";
 import {animateChild, AnimationOptions, AnimationReferenceMetadata, AnimationTransitionMetadata, AnimationTriggerMetadata, group, query, transition, trigger, useAnimation} from "@angular/animations";
 
-export function buildTrigger(animationReferenceMetadata: AnimationReferenceMetadata ,config: Partial<AnimationConfig> = DefaultAnimationConfig, options?: AnimationOptions | null): AnimationTriggerMetadata {
-  let configs: AnimationConfig = {...DefaultAnimationConfig, ...config };
-  return trigger(configs.triggerName, buildTransition(animationReferenceMetadata,configs,options));
+export function buildTrigger(config: BuildTriggerConfig): AnimationTriggerMetadata {
+  if(config.transitions instanceof Array){
+    return trigger(config.triggerName, config.transitions.map( transition => buildTransition(transition.animationReferenceMetadata,{...DefaultAnimationConfig,...transition.animationConfig},transition.animationOptions)) );
+  }else{
+    return trigger(config.triggerName, [buildTransition(config.transitions.animationReferenceMetadata,{...DefaultAnimationConfig, ...config.transitions.animationConfig },config.transitions.animationOptions)]);
+  }
 }
 
-export function buildTransition( animationReferenceMetadata: AnimationReferenceMetadata, config: AnimationConfig, options?: AnimationOptions | null): AnimationTransitionMetadata[]{
-  return [
-    transition(
+export function buildTransition( animationReferenceMetadata: AnimationReferenceMetadata, config: AnimationConfig, options?: AnimationOptions | null): AnimationTransitionMetadata{
+  return transition(
       includeStateChangeExpressions(config.stateChangeExpressions),
       includeNestedAnimations( animationReferenceMetadata, config),
       includeOptions(config, options)
       )
-  ]
 }
 
 export function includeOptions(config: AnimationConfig, options?: AnimationOptions | null): AnimationOptions | null{

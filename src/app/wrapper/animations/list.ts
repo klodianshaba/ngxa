@@ -1,10 +1,35 @@
 import {AnimationConfig, DefaultAnimationConfig} from "../common";
-import {animateChild, animation, AnimationTriggerMetadata, query, stagger} from "@angular/animations";
+import {
+  animate,
+  animateChild,
+  animation,
+  AnimationReferenceMetadata, AnimationStyleMetadata,
+  AnimationTriggerMetadata, group, keyframes,
+  query,
+  stagger, style
+} from "@angular/animations";
 import {buildTrigger} from "../base";
 
-export function list(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
+
+export function listAnimateChild(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
   return buildTrigger(
-    animation(query('@*', stagger((config && config.timings) || '200ms' , animateChild()), {optional: true})),
-    {...{triggerName: 'list', stateChangeExpression: '* => *'},...config}
+    {
+      triggerName: (config && config.triggerName) || 'listAnimationChild',
+      transitions: {
+        animationReferenceMetadata: animation(
+          query('@*', [
+            style({opacity: 0 , offset: 0}),
+            stagger((config && config.timings) || '200ms' ,
+              group([
+                animate(0,keyframes([style({opacity: 0 , offset: 0}),style({opacity: 1 , offset: 1})]) ),
+                animateChild()
+              ])
+            )
+            ] , {optional: true}
+          )
+        ),
+        animationConfig: {...{triggerName: (config && config.triggerName) || 'listAnimationChild', stateChangeExpression: '* => *'},...config}
+      }
+    }
   )
 }
