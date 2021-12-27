@@ -5,12 +5,7 @@ import {LandingLayoutComponent} from "./layouts/landing-layout/landing-layout.co
 import {DashboardLayoutComponent} from "./layouts/dashboard-layout/dashboard-layout.component";
 
 const routes: Routes = [
-  {path: '', pathMatch:'full', redirectTo:'landing'},
-  {path: '', component: LandingLayoutComponent,
-    children: [
-        { path:'landing', loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule) }
-      ]
-  },
+  {path: '', pathMatch:'full', redirectTo:'dashboard'},
   {path: '', component: DashboardLayoutComponent,
     children: [
       {path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m =>m.DashboardModule) }
