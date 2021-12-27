@@ -1,0 +1,14 @@
+.footer{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #ff4081;
+  color: white;
+  .section{
+    padding: 0 10px;
+  }
+}
+
