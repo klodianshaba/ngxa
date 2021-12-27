@@ -26,10 +26,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onTitle(): void {
-    this.router.navigate(['landing']).then();
-  }
-
   onExamples(): void {
     this.router.navigate(['dashboard']).then();
   }
