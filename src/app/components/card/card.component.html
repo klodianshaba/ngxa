@@ -7,6 +7,6 @@
   <mat-card-content></mat-card-content>
   <mat-card-actions>
     <button (click)="onAnimateIt()" mat-raised-button color="accent">Animate It</button>
-    <button mat-stroked-button>View</button>
+    <button *ngIf="view" (click)="onViewIt()" mat-stroked-button>View</button>
   </mat-card-actions>
 </mat-card>
