@@ -1,14 +1,14 @@
-<div class="description-container d-flex flex-column align-items-center justify-content-center">
+<div class="description-container d-flex flex-column align-items-center justify-content-center" [@listAnimationChild]="status">
 
-  <span class="fs-1 fw-bold" [@zoomIn]="{value:''}">Angular Animations Wrapper</span>
+  <span class="fs-1 fw-bold" [@zoomIn]="{value:status}">Angular Animations Wrapper</span>
 
   <div class="pt-5 pb-5" [@zoomIn]="{value:status, params:{}}">
-    <div [@bounceIn]="{value:status, params:{timings:'800ms'}}" >fdgdfg</div>
+    <div [@swing]="{value:status, params:{timings:'800ms'}}" >Easy Builder, Reusable and Dynamic Params</div>
     <span class="fs-5">This wrapper helps you to implement animations easy in your angular application</span>
   </div>
 
   <button (click)="animate()" mat-raised-button color="accent" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    Examples
+    Animate It
   </button>
 
 </div>

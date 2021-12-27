@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {bounceIn,zoomIn} from "../../wrapper";
-import {swing} from "../../wrapper/animations/attention-seekers";
+import {bounceIn, listAnimateChild, zoomIn} from "../../wrapper";
+import {heartBeat, swing} from "../../wrapper/animations/attention-seekers";
 
 @Component({
   selector: 'app-description',
@@ -9,6 +9,9 @@ import {swing} from "../../wrapper/animations/attention-seekers";
   animations: [
     zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
     bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
+    swing({stateChangeExpressions:':enter, 0 => 1'}),
+    listAnimateChild({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
+    heartBeat({stateChangeExpressions:':enter, 0 => 1'}),
     swing({stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
