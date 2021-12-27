@@ -1,6 +1,7 @@
 @import "src/app/scss/variables";
 .cards-container{
   width: 100%;
+  min-height: calc(100vh - 454px);
 }
 .card {
   margin: map-get($space, margin);
@@ -9,4 +10,16 @@
 .header-image {
   background-size: cover;
   background-color: lightgray;
+}
+.back{
+  margin: map-get($space , margin);
+}
+
+.single-card{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  text-align: center;
 }
