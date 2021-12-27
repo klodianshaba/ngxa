@@ -12,7 +12,7 @@
   height: calc(100vh - 64px);
 }
 
-.card-content, .footer-content{
+.card-content{
   margin: map-get($space , margin);
 }
 
