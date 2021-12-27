@@ -28,7 +28,7 @@ export function listAnimateChild(config?: Partial<AnimationConfig>): AnimationTr
             ] , {optional: true}
           )
         ),
-        animationConfig: {...{triggerName: (config && config.triggerName) || 'listAnimationChild', stateChangeExpression: '* => *'},...config}
+        animationConfig: {...{triggerName: (config && config.triggerName) || 'listAnimationChild', stateChangeExpressions: '* => *'},...config}
       }
     }
   )

@@ -22,7 +22,7 @@ export type NestedAnimationsType = keyof typeof NestedAnimations;
 
 // constants
 
-export let DefaultAnimationConfig: AnimationConfig = {triggerName:'animation', stateChangeExpressions: StateChangeExpressions.onEnter, delay: '0ms' , timings: '300ms', nestedAnimations: NestedAnimations.parallel}
+export let DefaultAnimationConfig: AnimationConfig = {triggerName:'animation', stateChangeExpressions: StateChangeExpressions.onEnter, delay: '0ms' , timings: '400ms', nestedAnimations: NestedAnimations.parallel}
 
 // interfaces
 
