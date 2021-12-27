@@ -1,4 +1,7 @@
-<div class="sidebar-container">
-  <div [@bounceIn]="{value:'', params:{timings:'800ms'}}" *ngFor="let i of [0,1,2,3,4,5,6]" matRipple class="item">BounceIN</div>
+
+<div class="sidebar-container" style="overflow-x: hidden">
+  <div [ngClass]="{'active': animation.active}" (mouseenter)="onHover(animation)" (mouseleave)="onLeave(animation)" (click)="onClick(animation)" *ngFor="let animation of animations" matRipple class="item">
+    <div [@animations]="animation">{{animation.triggerName.toUpperCase()}}</div>
+  </div>
 </div>
 

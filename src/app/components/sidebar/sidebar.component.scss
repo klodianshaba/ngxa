@@ -3,10 +3,14 @@
     width: 100%;
     padding: 10px 25px;
     cursor: pointer;
+    transition: 0.3s;
     &:hover{
       color: white;
       background-color: #ff4081;
     }
   }
-
+  .active{
+    color: white;
+    background-color: #ff4081;
+  }
 }
