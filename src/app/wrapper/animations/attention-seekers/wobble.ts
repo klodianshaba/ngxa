@@ -1,14 +1,6 @@
-import {
-  animate,
-  keyframes,
-  style,
-  AnimationTriggerMetadata,
-  animation,
-  AUTO_STYLE,
-  AnimationReferenceMetadata
-} from "@angular/animations";
+import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationOptions} from "@angular/animations";
 import {buildTrigger} from "../../base";
-import {AnimationConfig} from "../../common";
+import {AnimationConfig, TransitionConfig} from "../../common";
 
 export const wobbleKeyframes = [
   style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
@@ -22,14 +14,18 @@ export const wobbleKeyframes = [
 
 export const wobbleAnimation: AnimationReferenceMetadata = animation( animate('{{timings}} {{delay}}', keyframes(wobbleKeyframes) ));
 
+export const wobbleTransition = (animationConfig?: Partial<AnimationConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
+  return {
+    animationReferenceMetadata: wobbleAnimation,
+    animationConfig,
+    animationOptions
+  }
+}
+
 export function wobble(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
-  return buildTrigger(
-    {
-      triggerName: 'wobble',
-      transitions: {
-        animationReferenceMetadata: wobbleAnimation,
-        animationConfig: config
-      }
+  return buildTrigger({
+      triggerName: (config && config.triggerName) || 'swing',
+      transitions: wobbleTransition(config)
     }
   )
 }

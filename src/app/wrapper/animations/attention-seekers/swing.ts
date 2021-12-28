@@ -1,12 +1,4 @@
-import {
-  animate,
-  keyframes,
-  style,
-  AnimationTriggerMetadata,
-  animation,
-  AUTO_STYLE,
-  AnimationReferenceMetadata, AnimationOptions
-} from "@angular/animations";
+import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationOptions} from "@angular/animations";
 import {buildTrigger} from "../../base";
 import {AnimationConfig, TransitionConfig} from "../../common";
 

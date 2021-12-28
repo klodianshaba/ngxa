@@ -1,14 +1,6 @@
-import {
-  animate,
-  keyframes,
-  style,
-  AnimationTriggerMetadata,
-  animation,
-  AnimationOptions,
-  AnimationKeyframesSequenceMetadata, AnimationStyleMetadata
-} from "@angular/animations";
-import {buildTrigger} from "../base";
-import {AnimationConfig, TransitionConfig} from "../common";
+import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata} from "@angular/animations";
+import {buildTrigger} from "../../base";
+import {AnimationConfig, TransitionConfig} from "../../common";
 
 export const bounceInKeyframes: AnimationStyleMetadata[] = [
   style({ opacity: 0 , transform: 'scale3d(0.3, 0.3, 0.3)',easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0}),
