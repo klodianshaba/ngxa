@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {zoomIn, bounceIn} from "../../wrapper";
-import {AnimationModel } from "../../wrapper/animations/animations";
+import {AnimationGroupModel, AnimationModel, AnimationsGroups} from "../../wrapper/animations/animations";
 import {animations, Animations} from "../../wrapper/animations/animations";
 import {Router} from "@angular/router";
 
@@ -16,28 +16,20 @@ import {Router} from "@angular/router";
 })
 export class SidebarComponent implements OnInit {
 
-  status:boolean = false;
-
   public animations: AnimationModel[] = Animations;
+  public animationsGroups: AnimationGroupModel[] = AnimationsGroups;
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  animate() {
-    this.status = false;
-    setTimeout(() => {
-      this.status = true;
-    }, 1);
-  }
   onHover(animation: AnimationModel): void{
     if(!animation.canAnimate) {
       this.onAnimateIt(animation);
     }
     animation.canAnimate = true;
   }
-  onLeave(animation: AnimationModel): void{
+  onLeave(animation: AnimationModel): void {
      animation.canAnimate = false;
   }
   onClick(animation: AnimationModel): void{

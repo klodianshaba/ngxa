@@ -1,18 +1,35 @@
 @import "src/app/scss/variables";
 
+mat-sidenav-container{
+  background-color: var(--ani-background);
+}
+.animations-content{
+  height: calc(100vh - 135px);
+  overflow: hidden;
+  margin: 0 map-get($space, margin);
+  text-align: center;
+  .animation-content, .description-content{
+    padding: 50px 0;
+  }
+  .description-content{
+    border-bottom: 1px solid var(--ani-color-border);
+  }
+}
 .sidenav{
   width: 260px;
-  box-shadow: 1px 0px 8px 0px rgba(0,0,0,0.20);
-  -webkit-box-shadow: 1px 0px 8px 0px rgba(0,0,0,0.20);
-  -moz-box-shadow: 1px 0px 8px 0px rgba(0,0,0,0.20);
   border-right: none;
-
 }
 .sidenav-content{
   height: calc(100vh - 64px);
 }
 
-.card-content{
-  margin: map-get($space , margin);
+@media (max-height: 755px), (max-width: 755px ){
+  /* CSS stuff */
+  .animations-content{
+    overflow-y: auto;
+    height: auto;
+  }
 }
+
+
 

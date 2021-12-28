@@ -1,16 +1,23 @@
 .sidebar-container{
+  overflow-x: hidden;
   .item{
     width: 100%;
     padding: 10px 25px;
     cursor: pointer;
     transition: 0.3s;
     &:hover{
-      color: white;
-      background-color: #ff4081;
+      //color: white;
+      background-color: var(--ani-background-hover);
+      :first-child{
+        font-weight: bold;
+      }
     }
   }
   .active{
-    color: white;
-    background-color: #ff4081;
+    //color: white;
+    background-color: var(--ani-background-hover);
+    :first-child{
+      font-weight: bold;
+    }
   }
 }

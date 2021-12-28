@@ -1,14 +1,18 @@
 
 <app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
-<mat-sidenav-container class="example-container" autosize >
-  <mat-sidenav  #drawer class="sidenav py-4" mode="side" opened>
+<mat-sidenav-container class="" autosize >
+  <mat-sidenav #drawer class="sidenav custom-scrollbar" mode="side" opened>
     <app-sidebar></app-sidebar>
   </mat-sidenav>
-  <mat-sidenav-content class="sidenav-content">
-    <app-description></app-description>
-    <div class="card-content">
-      <router-outlet></router-outlet>
-    </div>
+  <mat-sidenav-content class="custom-scrollbar sidenav-content">
+   <div class="animations-content d-flex flex-column align-items-center justify-content-center">
+     <div class="description-content">
+       <app-description></app-description>
+     </div>
+     <div class="animation-content">
+       <router-outlet></router-outlet>
+     </div>
+   </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

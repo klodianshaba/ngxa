@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {bounceIn, listAnimateChild, zoomIn} from "../../wrapper";
 import {heartBeat, swing} from "../../wrapper/animations/attention-seekers";
+import {backIn} from "../../wrapper/animations/back-entrances/backIn";
 
 @Component({
   selector: 'app-description',
@@ -13,6 +14,7 @@ import {heartBeat, swing} from "../../wrapper/animations/attention-seekers";
     listAnimateChild({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
     heartBeat({stateChangeExpressions:':enter, 0 => 1'}),
     swing({stateChangeExpressions:':enter, 0 => 1'}),
+    backIn({stateChangeExpressions:':enter, 0 => 1', direction:'Down', translate:'300px'}),
   ]
 })
 export class DescriptionComponent implements OnInit {

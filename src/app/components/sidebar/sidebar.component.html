@@ -1,5 +1,5 @@
 
-<div class="sidebar-container" style="overflow-x: hidden">
+<div class="sidebar-container custom-scrollbar">
   <div [ngClass]="{'active': animation.active}" (mouseenter)="onHover(animation)" (mouseleave)="onLeave(animation)" (click)="onClick(animation)" *ngFor="let animation of animations" matRipple class="item">
     <div [@animations]="animation">{{animation.triggerName.toUpperCase()}}</div>
   </div>

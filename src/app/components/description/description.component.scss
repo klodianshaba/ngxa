@@ -1,6 +1,12 @@
 
 .description-container{
-  height: 300px;
-  background-color: #ff4081;
-  color: white;
+  height: 100%;
+}
+.easy-builder{
+  text-align: left;
+}
+@media (max-width: 1007px) {
+  .easy-builder {
+    text-align: center;
+  }
 }

@@ -1,17 +1,15 @@
 
-<div class="cards-container" [ngClass]="{'single-card': animation}">
-
-  <div *ngIf="this.animation">
-    <div class="back"> <button mat-icon-button (click)="onViewAnimations()"><mat-icon>arrow_back</mat-icon></button></div>
-    <div class="card d-inline-block" [@animations]="animation">
-      <app-card [animation]="animation" [view]="false" (onAnimate)="onAnimateCard($event)"></app-card>
+<div class="dashboard d-flex flex-column align-items-center justify-content-center ">
+  <div class="d-flex flex-column align-items-center justify-content-center" *ngIf="this.animation">
+    <div class="fs-3 fw-bold" [@bounceInDown] >{{animation.triggerName}}</div>
+    <div class="angular-logo d-inline-block" [@animations]="animation">
+      <img alt="Angular Logo" src="./assets/images/angular_solidBlack.png">
+    </div>
+    <div [@bounceInUp] >
+      <button (click)="onAnimateCard(animation)" mat-raised-button>Animate It</button>
     </div>
   </div>
-
   <div *ngIf="!this.animation">
-    <div class="card d-inline-block" [@animations]="animation" *ngFor="let animation of animations">
-      <app-card [animation]="animation" (onAnimate)="onAnimateCards($event)" (onView)="onViewIt($event)"></app-card>
-    </div>
+    Not founded Animation
   </div>
-
 </div>

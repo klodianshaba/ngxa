@@ -1,11 +1,7 @@
 @import "src/app/scss/variables";
-.cards-container{
-  width: 100%;
-  min-height: calc(100vh - 454px);
-}
-.card {
-  margin: map-get($space, margin);
-  width:calc( 16.6% - 30px);
+
+.dashboard{
+ height: 100%;
 }
 .header-image {
   background-size: cover;
@@ -15,11 +11,9 @@
   margin: map-get($space , margin);
 }
 
-.single-card{
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  text-align: center;
+.angular-logo{
+  margin: map-get($space, margin);
+  img{
+    width: 200px;
+  }
 }

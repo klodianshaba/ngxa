@@ -1,14 +1,31 @@
+
 mat-toolbar{
   position: sticky;
   width: 100%;
   z-index: 2 !important;
-  box-shadow: 0px 9px 8px 0px rgba(0,0,0,0.38);
-  -webkit-box-shadow: 0px 9px 8px 0px rgba(0,0,0,0.38);
-  -moz-box-shadow: 0px 9px 8px 0px rgba(0,0,0,0.38);
+  border-bottom: 1px solid var(--ani-color-border);
+  background-color: var(--ani-background);
+  overflow: hidden;
 }
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 .title{
   cursor: pointer;
 }
+.dev-klodian{
+  overflow: hidden;
+}
+
+@media (max-width: 445px){
+  /* CSS stuff */
+  .dev-klodian{
+    display: none;
+  }
+}
+@media (max-width: 599px) {
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    height: 64px;
+  }
+}
+
