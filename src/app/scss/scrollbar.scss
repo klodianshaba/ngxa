@@ -1,0 +1,20 @@
+@media only screen and ( min-width: 750px ) {
+  body::-webkit-scrollbar, .custom-scrollbar::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  body::-webkit-scrollbar-thumb, .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0,.10);
+  }
+  body::-webkit-scrollbar-track, .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: var(--ani-color-border);
+  }
+
+  body::-webkit-scrollbar-thumb:hover,.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, .20);
+  }
+
+  body::-webkit-scrollbar-track:hover, .custom-scrollbar::-webkit-scrollbar-track:hover{
+    background-color: var(--ani-color-border);
+  }
+}
