@@ -2,12 +2,15 @@
 
 
 <div class="sidebar-container custom-scrollbar">
-  <div [ngClass]="{'active': animation.active}" (mouseenter)="onHover(animation)" (mouseleave)="onLeave(animation)" (click)="onClick(animation)" *ngFor="let animation of animations" matRipple class="item d-flex justify-content-between align-items-center" >
-    <div [@bounceInLeft]="statusAnimation">
-      <span>{{animation.triggerName.toUpperCase()}}</span>
-    </div>
-    <div [@bounceInLeft]="statusAnimation" class="icon-content">
-      <mat-icon>navigate_next</mat-icon>
+  <div *ngFor="let group of groups; let i = index">
+    <div class="group fw-bold">{{group.name.toUpperCase()}}</div>
+    <div [ngClass]="{'active': animation.active}" (click)="onClick(i,animation)" *ngFor="let animation of group.animations" matRipple class="item d-flex justify-content-between align-items-center">
+      <div [@animations]="animation">
+        <span>{{animation.triggerName.toUpperCase()}}</span>
+      </div>
+      <div [@bounceInLeft] class="icon-content">
+        <mat-icon>navigate_next</mat-icon>
+      </div>
     </div>
   </div>
 </div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {zoomIn, bounceIn, listAnimateChild} from "../../wrapper";
-import {AnimationGroupModel, AnimationModel, AnimationsGroups} from "../../wrapper/animations/animations";
-import {animations, Animations} from "../../wrapper/animations/animations";
+import {AnimationGroupModel, AnimationModel, AnimationGroups, animations} from "../../models";
 import {Router} from "@angular/router";
-import {bounceInLeft} from "../../wrapper/animations/bouncing-entrances/bounceInLeft";
+import {zoomIn} from "../../animations/zooming-entrances";
+import {bounceIn} from "../../animations/bouncing-entrances";
+import {listAnimateChild} from "../../animations/list";
 
 @Component({
   selector: 'app-sidebar',
@@ -11,43 +11,42 @@ import {bounceInLeft} from "../../wrapper/animations/bouncing-entrances/bounceIn
   styleUrls: ['./sidebar.component.scss'],
   animations: [
     zoomIn(),
-    bounceIn({stateChangeExpressions:[':enter', '0 => 1']}),
+    bounceIn({stateChangeExpressions: [':enter', '0 => 1']}), // bounceIn trigger
+    bounceIn({stateChangeExpressions: [':enter', '0 => 1'], direction:'Left', translate:'100px'}), // bounceInLeft trigger
     animations(),
     listAnimateChild({timings:'100ms', stateChangeExpressions:':enter, 0 => 1'}),
-    bounceInLeft({stateChangeExpressions:[':enter', '0 => 1'], translate:'100px'})
   ]
 })
 export class SidebarComponent implements OnInit {
 
-  public animations: AnimationModel[] = Animations;
-  public animationsGroups: AnimationGroupModel[] = AnimationsGroups;
-  public statusAnimation: boolean = false;
+  public groups: AnimationGroupModel[] = AnimationGroups;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {}
 
-  onHover(animation: AnimationModel): void{
-    if(!animation.canAnimate) {
-      // this.onAnimateIt(animation);
-    }
-    animation.canAnimate = true;
-  }
-  onLeave(animation: AnimationModel): void {
-     animation.canAnimate = false;
-  }
-  onClick(animation: AnimationModel): void{
-    this.onAnimateIt(animation);
+  onClick(groupIndex: number, animation: AnimationModel): void{
+    this.onAnimateIt(groupIndex,animation);
     this.router.navigate(['dashboard'],{queryParams:{animation:animation.triggerName}}).then();
   }
 
-  onAnimateIt(animation: AnimationModel): void{
+  onAnimateIt(groupIndex: number,animation: AnimationModel): void{
       animation.value = false;
       setTimeout(() => {
-        const index = this.animations.indexOf(animation);
+        const index = this.groups[groupIndex].animations.indexOf(animation);
         animation.value = animation.triggerName;
-        this.animations[index] = Object.assign({}, this.animations[index]);
+        this.groups[groupIndex].animations[index] = Object.assign({}, animation);
       }, 1);
   }
+
+  // onHover(groupIndex: number, animation: AnimationModel): void{
+  //   if(!animation.canAnimate) {
+  //     this.onAnimateIt(groupIndex,animation);
+  //   }
+  //   animation.canAnimate = true;
+  // }
+  // onLeave(groupIndex: number, animation: AnimationModel): void {
+  //    animation.canAnimate = false;
+  // }
 
 }
