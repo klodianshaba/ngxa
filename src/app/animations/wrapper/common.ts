@@ -15,6 +15,8 @@ export enum StateChangeExpressions{
 }
 
 export enum AnimationDirections {
+  In = 'In',
+  Out = 'Out',
   Left = 'Left',
   Right = 'Right',
   Up = 'Up',
@@ -31,6 +33,17 @@ export type NestedAnimationsType = keyof typeof NestedAnimations;
 // constants
 
 export let DefaultAnimationConfig: AnimationConfig = {triggerName:'animation', stateChangeExpressions: StateChangeExpressions.onEnter, delay: '0ms' , timings: '500ms', nestedAnimations: NestedAnimations.parallel}
+
+
+// functions
+
+export function isLeftOrDownDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Left.toString(), AnimationDirections.Down.toString()].includes(direction);
+}
+
+export function isRightOrUpDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Right.toString(), AnimationDirections.Up.toString()].includes(direction);
+}
 
 // interfaces
 
