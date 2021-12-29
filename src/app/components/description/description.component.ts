@@ -14,7 +14,7 @@ import {backIn} from "../../wrapper/animations/back-entrances/backIn";
     listAnimateChild({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
     heartBeat({stateChangeExpressions:':enter, 0 => 1'}),
     swing({stateChangeExpressions:':enter, 0 => 1'}),
-    backIn({stateChangeExpressions:':enter, 0 => 1', direction:'Down', translate:'300px'}),
+    backIn({stateChangeExpressions:':enter, 0 => 1', direction:'Down', translate:'200px'}),
   ]
 })
 export class DescriptionComponent implements OnInit {

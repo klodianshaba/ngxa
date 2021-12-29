@@ -2,7 +2,7 @@
   overflow-x: hidden;
   .item{
     width: 100%;
-    padding: 10px 25px;
+    padding: 10px 10px 10px 25px;
     cursor: pointer;
     transition: 0.3s;
     &:hover{
@@ -14,10 +14,15 @@
     }
   }
   .active{
-    //color: white;
+    color: var(--ani-color-active);
     background-color: var(--ani-background-hover);
     :first-child{
       font-weight: bold;
+    }
+  }
+  .icon-content{
+    .mat-icon{
+      display: block;
     }
   }
 }

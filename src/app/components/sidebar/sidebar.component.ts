@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {zoomIn, bounceIn} from "../../wrapper";
+import {zoomIn, bounceIn, listAnimateChild} from "../../wrapper";
 import {AnimationGroupModel, AnimationModel, AnimationsGroups} from "../../wrapper/animations/animations";
 import {animations, Animations} from "../../wrapper/animations/animations";
 import {Router} from "@angular/router";
+import {bounceInLeft} from "../../wrapper/animations/bouncing-entrances/bounceInLeft";
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +13,15 @@ import {Router} from "@angular/router";
     zoomIn(),
     bounceIn({stateChangeExpressions:[':enter', '0 => 1']}),
     animations(),
+    listAnimateChild({timings:'100ms', stateChangeExpressions:':enter, 0 => 1'}),
+    bounceInLeft({stateChangeExpressions:[':enter', '0 => 1'], translate:'100px'})
   ]
 })
 export class SidebarComponent implements OnInit {
 
   public animations: AnimationModel[] = Animations;
   public animationsGroups: AnimationGroupModel[] = AnimationsGroups;
+  public statusAnimation: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -25,7 +29,7 @@ export class SidebarComponent implements OnInit {
 
   onHover(animation: AnimationModel): void{
     if(!animation.canAnimate) {
-      this.onAnimateIt(animation);
+      // this.onAnimateIt(animation);
     }
     animation.canAnimate = true;
   }

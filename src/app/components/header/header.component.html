@@ -1,5 +1,5 @@
 
-<mat-toolbar [@listAnimateChild]="5">
+<mat-toolbar [@listAnimationChild]="4" color="primary">
 
   <button [@bounceInLeft] (click)="onClickSideBar()" *ngIf="layoutService.isDashboard(this.layout)" mat-icon-button class="example-icon" aria-label="icon-button with menu icon">
     <mat-icon >menu</mat-icon>
@@ -9,8 +9,8 @@
 
   <span class="spacer"></span>
 
-  <a [@bounceIn] href="https://github.com/klodianshaba/angular-animations" target="_blank" mat-icon-button>
-    <img alt="GitHub Logo" src="../../../assets/images/GitHub-Mark-32px.png">
+  <a [@bounceInRight] href="https://github.com/klodianshaba/angular-animations" target="_blank" mat-icon-button>
+    <img alt="GitHub Logo" src="../../../assets/images/GitHub-Mark-Light-32px.png">
   </a>
 
   <span [@bounceInRight] class="ms-2 dev-klodian">
