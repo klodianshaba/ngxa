@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {AnimationModel} from "../../wrapper/animations/animations";
+import {AnimationModel} from "../../models/animation.model";
 
 @Component({
   selector: 'app-card',

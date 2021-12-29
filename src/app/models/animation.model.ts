@@ -1,20 +1,14 @@
-import {AnimationTriggerMetadata} from "@angular/animations";
-import {buildTrigger} from "../base";
-import {AnimationConfig} from "../common";
-import {bounceInTransition} from "./bouncing-entrances/bounceIn";
-import {zoomInTransition} from "./zoomIn";
-import {bounceTransition, flashTransition, headShakeTransition, heartBeatTransition, jelloTransition, swingTransition, wobbleTransition} from "./attention-seekers";
-import {pulseTransition} from "./attention-seekers/pulse";
-import {rubberBandTransition} from "./attention-seekers/rubber-band";
-import {shakeTransition} from "./attention-seekers/shake";
-import {AnimationOptions} from "@angular/animations";
-import {tadaTransition} from "./attention-seekers/tada";
-import {bounceInUpTransition} from "./bouncing-entrances/bounceInUp";
-import {bounceInRightTransition} from "./bouncing-entrances/bounceInRight";
-import {bounceInLeftTransition} from "./bouncing-entrances/bounceInLeft";
-import {bounceInDownTransition} from "./bouncing-entrances/bounceInDown";
-import {backInTransition} from "./back-entrances/backIn";
-import {backOutTransition} from "./back-exits/backOut";
+import {AnimationTriggerMetadata, AnimationOptions} from "@angular/animations";
+import {buildTrigger ,AnimationConfig} from "../animations/wrapper";
+import {bounceInTransition} from "../animations/bouncing-entrances";
+import {zoomInTransition} from "../animations/zooming-entrances";
+import {
+  bounceTransition, flashTransition, headShakeTransition, heartBeatTransition, jelloTransition, swingTransition,
+  wobbleTransition, pulseTransition, rubberBandTransition, shakeTransition,tadaTransition
+}
+from "../animations/attention-seekers";
+import {backOutTransition} from "../animations/back-exits";
+import {backInTransition} from "../animations/back-entrances";
 
 export interface AnimationModel{
   triggerName:string,
@@ -108,10 +102,10 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
 
         // bounce int transition with different directions
         bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceIn'}}),
-        bounceInUpTransition({...config, ...{stateChangeExpressions:'* => bounceInUp', timings:'1000ms',translate:'500px'}}),
-        bounceInRightTransition({...config, ...{stateChangeExpressions:'* => bounceInRight', timings:'1000ms',translate:'500px'}}),
-        bounceInLeftTransition({...config, ...{stateChangeExpressions:'* => bounceInLeft', timings:'1000ms',translate:'500px'}}),
-        bounceInDownTransition({...config, ...{stateChangeExpressions:'* => bounceInDown', timings:'1000ms',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInUp', direction: 'Up', timings:'1000ms',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInDown', direction: 'Down', timings:'1000ms',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInLeft', direction: 'Left', timings:'1000ms',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInRight', direction: 'Right', timings:'1000ms',translate:'500px'}}),
 
         // back out transition with different directions
         backOutTransition({...config, ...{stateChangeExpressions:'* => backOutUp',direction: 'Up', timings:'500ms',translateX:'500px'}}),

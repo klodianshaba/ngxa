@@ -1,12 +1,11 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {bounceIn, listAnimateChild, zoomIn} from "../../wrapper";
-import {AnimationModel} from "../../wrapper/animations/animations";
-import {Animations, animations} from "../../wrapper/animations/animations";
+import {AnimationGroupModel, AnimationGroups, AnimationModel,animations} from "../../models";
 import {ActivatedRoute, Router} from "@angular/router";
-import {heartBeat, swing} from "../../wrapper/animations/attention-seekers";
-import {bounceInDown} from "../../wrapper/animations/bouncing-entrances/bounceInDown";
-import {bounceInUp} from "../../wrapper/animations/bouncing-entrances/bounceInUp";
-import {backIn} from "../../wrapper/animations/back-entrances/backIn";
+import {heartBeat, swing} from "../../animations/attention-seekers";
+import {backIn} from "../../animations/back-entrances";
+import {zoomIn} from "../../animations/zooming-entrances";
+import {bounceIn} from "../../animations/bouncing-entrances";
+import {listAnimateChild} from "../../animations/list";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,26 +13,26 @@ import {backIn} from "../../wrapper/animations/back-entrances/backIn";
   animations: [
     zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
     bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
+    bounceIn({stateChangeExpressions:':enter', direction:'Down', translate:'300px', timings:'1000ms'}),
+    bounceIn({stateChangeExpressions:':enter', direction:'Up', translate:'300px', timings:'1000ms'}),
     swing({stateChangeExpressions:':enter'}),
     listAnimateChild({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
     heartBeat({stateChangeExpressions:':enter, 0 => 1'}),
     swing({stateChangeExpressions:':enter, 0 => 1', timings:'1000ms'}),
     backIn({stateChangeExpressions:':enter, 0 => 1', direction:'Down', translate:'300px'}),
-    bounceInDown({stateChangeExpressions:':enter', translate:'300px', timings:'1000ms'}),
-    bounceInUp({stateChangeExpressions:':enter', translate:'300px', timings:'1000ms'}),
     animations(),
  ]
 })
 export class DashboardComponent implements OnInit {
 
-  public animations: AnimationModel[] = Animations;
-  public animation: AnimationModel | undefined = this.animations[3];
+  public groups: AnimationGroupModel[] = AnimationGroups;
 
+  public animation: AnimationModel | undefined = this.findAnimation('flash');
 
   constructor(private cdf: ChangeDetectorRef, private activatedRoute: ActivatedRoute, private router: Router) {
-    this.activatedRoute.queryParams.subscribe(params =>{
+    this.activatedRoute.queryParams.subscribe(params => {
       if(params.hasOwnProperty('animation')){
-        this.animation = this.animations.find(item => item.triggerName === params['animation']);
+        this.animation = this.findAnimation(params['animation']);
         if(this.animation){
           this.onAnimateCard(this.animation);
         }
@@ -44,11 +43,20 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  findAnimation(name: string): AnimationModel | undefined{
+    let animation:AnimationModel | undefined;
+    this.groups.forEach(group => {
+      if(!animation) {
+         animation = group.animations.find(animation => animation.triggerName === name)
+      }
+    });
+    return animation;
   }
 
   onAnimateCard(animation: AnimationModel): void{
-    this.animation = this.animations.find(item => item.triggerName === animation.triggerName);
+    this.animation = this.findAnimation(animation.triggerName);
     if(this.animation) {
       this.animation.value = false;
       setTimeout(() => {
@@ -65,20 +73,13 @@ export class DashboardComponent implements OnInit {
   }
 
   checkActiveAnimation(): void{
-    this.animations.map( item => {
+    this.groups.map(group => group.animations.map( item => {
         if(item.triggerName === this.animation?.triggerName){
           return Object.assign(item ,{active: true});
         }
         return Object.assign(item ,{active: false});
       }
-    );
+    )
+  );
   }
-
-  // onAnimateIt(animation: AnimationModel) {
-  //   this.onAnimateCard(animation);
-  //   this.status = false;
-  //   setTimeout(() => {
-  //     this.status = true;
-  //   }, 1);
-  // }
 }

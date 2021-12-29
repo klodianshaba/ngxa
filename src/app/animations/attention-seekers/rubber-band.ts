@@ -1,6 +1,6 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationOptions} from "@angular/animations";
-import {buildTrigger} from "../../base";
-import {AnimationConfig, TransitionConfig} from "../../common";
+import {buildTrigger} from "../wrapper/base";
+import {AnimationConfig, TransitionConfig} from "../wrapper/common";
 
 export const rubberBandKeyframes = [
   style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),

@@ -1,10 +1,10 @@
 import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router } from "@angular/router";
-import {Layouts} from "../../models/layout.model";
+import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
-import {bounceIn, listAnimateChild, zoomIn} from "../../wrapper";
-import {bounceInRight} from "../../wrapper/animations/bouncing-entrances/bounceInRight";
-import {bounceInLeft} from "../../wrapper/animations/bouncing-entrances/bounceInLeft";
+import {zoomIn} from "../../animations/zooming-entrances";
+import {bounceIn} from "../../animations/bouncing-entrances";
+import {listAnimateChild} from "../../animations/list";
 
 @Component({
   selector: 'app-header',
@@ -13,8 +13,8 @@ import {bounceInLeft} from "../../wrapper/animations/bouncing-entrances/bounceIn
   animations:[
     zoomIn(),
     bounceIn({timings:'1000ms'}),
-    bounceInRight({timings:'1000ms',translate:'100px'}),
-    bounceInLeft({timings:'1000ms',translate:'100px'}),
+    bounceIn({direction:'Left', timings:'1000ms',translate:'100px'}),
+    bounceIn({direction:'Right', timings:'1000ms',translate:'100px'}),
     listAnimateChild({timings:'500ms'}),
   ]
 })

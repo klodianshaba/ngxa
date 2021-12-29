@@ -1,6 +1,6 @@
 import {animate, AnimationTriggerMetadata, keyframes, style, animation, AnimationOptions} from "@angular/animations";
-import {AnimationConfig, TransitionConfig} from "../common";
-import {buildTrigger} from "../base";
+import {AnimationConfig, TransitionConfig} from "../wrapper/common";
+import {buildTrigger} from "../wrapper/base";
 
 export const zoomInKeyframes = [
   style({ visibility: 'visible', transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0}),

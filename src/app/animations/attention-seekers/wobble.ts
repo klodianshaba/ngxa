@@ -1,6 +1,6 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationOptions} from "@angular/animations";
-import {buildTrigger} from "../../base";
-import {AnimationConfig, TransitionConfig} from "../../common";
+import {buildTrigger} from "../wrapper/base";
+import {AnimationConfig, TransitionConfig} from "../wrapper/common";
 
 export const wobbleKeyframes = [
   style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),

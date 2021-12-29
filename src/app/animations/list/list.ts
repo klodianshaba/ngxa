@@ -1,4 +1,4 @@
-import {AnimationConfig, DefaultAnimationConfig} from "../common";
+import {AnimationConfig, DefaultAnimationConfig} from "../wrapper/common";
 import {
   animate,
   animateChild,
@@ -8,7 +8,7 @@ import {
   query,
   stagger, style
 } from "@angular/animations";
-import {buildTrigger} from "../base";
+import {buildTrigger} from "../wrapper/base";
 
 
 export function listAnimateChild(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
@@ -21,7 +21,7 @@ export function listAnimateChild(config?: Partial<AnimationConfig>): AnimationTr
             style({opacity: 0 , offset: 0, visibility:'hidden'}),
             stagger((config && config.timings) || '200ms' ,
               group([
-                animate(0,keyframes([style({visibility:'visible',opacity: 0 , offset: 0}),style({opacity: 1 , offset: 1})]) ),
+                animate(0,keyframes([style({visibility:'visible', offset: 0}),style({opacity: 1 , offset: 1})]) ),
                 animateChild()
               ])
             )

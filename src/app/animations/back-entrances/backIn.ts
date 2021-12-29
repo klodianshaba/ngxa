@@ -1,6 +1,6 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata, AnimationReferenceMetadata} from "@angular/animations";
-import {buildTrigger} from "../../base";
-import {AnimationConfig, TransitionConfig, AnimationDirections, AnimationDirection} from "../../common";
+import {buildTrigger} from "../wrapper/base";
+import {AnimationConfig, TransitionConfig, AnimationDirections, AnimationDirection} from "../wrapper/common";
 
 export const backInKeyframes = (direction?: AnimationDirection): AnimationStyleMetadata[] => [
   style({ opacity: 0.7, transform: backInDirectionTranslate(direction) + ' scale(0.7)',  offset: 0 }),

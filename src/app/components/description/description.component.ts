@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {bounceIn, listAnimateChild, zoomIn} from "../../wrapper";
-import {heartBeat, swing} from "../../wrapper/animations/attention-seekers";
-import {backIn} from "../../wrapper/animations/back-entrances/backIn";
+import {heartBeat, swing} from "../../animations/attention-seekers";
+import {backIn} from "../../animations/back-entrances/";
+import {zoomIn} from "../../animations/zooming-entrances";
+import {bounceIn} from "../../animations/bouncing-entrances";
+import {listAnimateChild} from "../../animations/list";
 
 @Component({
   selector: 'app-description',
