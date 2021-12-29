@@ -1,6 +1,6 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AUTO_STYLE, AnimationReferenceMetadata, AnimationTransitionMetadata, AnimationOptions} from "@angular/animations";
-import {buildTrigger} from "../../base";
-import {AnimationConfig, TransitionConfig} from "../../common";
+import {buildTrigger} from "../wrapper/base";
+import {AnimationConfig, TransitionConfig} from "../wrapper/common";
 
 export const heartBeatKeyframes = [
   style({ visibility: AUTO_STYLE, transform: 'scale(1)', easing: 'ease-in-out', offset: 0 }),
