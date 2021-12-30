@@ -56,6 +56,21 @@ export interface BuildTriggerConfig{
   transitions: TransitionConfig | TransitionConfig[];
 }
 
+export function directionTranslate3d(translate: string, direction?: AnimationDirection): string{
+  switch (direction){
+    case AnimationDirections.Left:
+      return 'translate3d('+ translate +',0 ,0)';
+    case AnimationDirections.Right:
+      return 'translate3d('+ translate +' ,0 ,0)';
+    case AnimationDirections.Up:
+      return 'translate3d(0,'+ translate +', 0)';
+    case AnimationDirections.Down:
+      return 'translate3d(0,'+ translate +', 0)';
+    default:
+      return 'translate3d('+ translate +',0 ,0)';
+  }
+}
+
 // functions
 
 export function isLeftOrDownDirection(direction: AnimationDirection): boolean {

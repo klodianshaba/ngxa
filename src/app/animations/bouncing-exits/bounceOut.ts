@@ -1,6 +1,14 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata, AnimationReferenceMetadata} from "@angular/animations";
 
-import {buildTrigger, AnimationConfig, AnimationDirection, AnimationDirections, TransitionConfig, isLeftOrUpDirection} from "../wrapper";
+import {
+  buildTrigger,
+  AnimationConfig,
+  AnimationDirection,
+  AnimationDirections,
+  TransitionConfig,
+  isLeftOrUpDirection,
+  directionTranslate3d
+} from "../wrapper";
 
 export const bounceOutKeyframes: AnimationStyleMetadata[] = [
   style({ transform: 'scale3d(0.9, 0.9, 0.9)', offset: .2}),
@@ -10,30 +18,15 @@ export const bounceOutKeyframes: AnimationStyleMetadata[] = [
 ];
 
 export const bounceOutDirectionKeyframes = (direction: AnimationDirection): AnimationStyleMetadata[] => [
-  style({ transform: bounceOutDirectionTranslate((isLeftOrUpDirection(direction)) ? '-10px':'10px', direction), offset: 0.2 }),
-  style({ transform: bounceOutDirectionTranslate((isLeftOrUpDirection(direction)) ? '20px':'-20px', direction) , offset: 0.4 }) ,
-  style({ transform: bounceOutDirectionTranslate((isLeftOrUpDirection(direction)) ? '20px':'-20px', direction), offset: 0.45 }),
-  style({ transform: bounceOutDirectionTranslate(  (isLeftOrUpDirection(direction) ) ? '-{{translate}}':'{{translate}}', direction), offset: 1 }),
+  style({ transform: directionTranslate3d((isLeftOrUpDirection(direction)) ? '-10px':'10px', direction), offset: 0.2 }),
+  style({ transform: directionTranslate3d((isLeftOrUpDirection(direction)) ? '20px':'-20px', direction) , offset: 0.4 }) ,
+  style({ transform: directionTranslate3d((isLeftOrUpDirection(direction)) ? '20px':'-20px', direction), offset: 0.45 }),
+  style({ transform: directionTranslate3d(  (isLeftOrUpDirection(direction) ) ? '-{{translate}}':'{{translate}}', direction), offset: 1 }),
 ];
 
 export interface BounceOutConfig extends AnimationConfig {
   translate: string;
   direction: AnimationDirection;
-}
-
-export function bounceOutDirectionTranslate(translate: string, direction?: AnimationDirection): string{
-  switch (direction){
-    case AnimationDirections.Left:
-      return 'translate3d('+ translate +',0 ,0)';
-    case AnimationDirections.Right:
-      return 'translate3d('+ translate +' ,0 ,0)';
-    case AnimationDirections.Up:
-      return 'translate3d(0,'+ translate +', 0)';
-    case AnimationDirections.Down:
-      return 'translate3d(0,'+ translate +', 0)';
-    default:
-      return 'translate3d('+ translate +',0 ,0)';
-  }
 }
 
 export const bounceOutAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(
@@ -55,7 +48,7 @@ export function bounceOut(config?: Partial<BounceOutConfig>): AnimationTriggerMe
   config = { ...{direction: AnimationDirections.Out}, ...config}
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || 'bounce' + ( (config.direction === AnimationDirections.Out) || 'Out' + config.direction),
+      triggerName: (config && config.triggerName) || 'bounce' + ( (config.direction === AnimationDirections.Out) ? AnimationDirections.Out  : AnimationDirections.Out + config.direction),
       transitions: bounceOutTransition(config)
     }
   )

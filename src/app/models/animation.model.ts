@@ -9,6 +9,7 @@ import {
 from "../animations/attention-seekers";
 import {backOutTransition} from "../animations/back-exits";
 import {backInTransition} from "../animations/back-entrances";
+import {bounceOutTransition} from "../animations/bouncing-exits/bounceOut";
 
 export interface AnimationModel{
   triggerName:string,
@@ -57,13 +58,21 @@ export const AnimationGroups: AnimationGroupModel[] = [
     id:4, name: 'Bouncing entrances',
     animations: [
       {triggerName:'bounceIn', value: 'bounceIn' ,params:{}, canAnimate: false,active: false},
-      {triggerName:'bounceInRight', value: 'bounceInRight' ,params:{}, canAnimate: false,active: false},
-      {triggerName:'bounceInLeft', value: 'bounceInRight' ,params:{}, canAnimate: false,active: false},
       {triggerName:'bounceInUp', value: 'bounceInUp' ,params:{}, canAnimate: false,active: false},
       {triggerName:'bounceInDown', value: 'bounceInDown' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'bounceInLeft', value: 'bounceInRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'bounceInRight', value: 'bounceInRight' ,params:{}, canAnimate: false,active: false},
     ]
   },
-  { id:5, name: 'Bouncing exits', animations: [] },
+  { id:5, name: 'Bouncing exits',
+    animations: [
+      {triggerName:'bounceOut', value: 'bounceOut' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'bounceOutUp', value: 'bounceOutUp' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'bounceOutDown', value: 'bounceOutDown' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'bounceOutLeft', value: 'bounceOutLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'bounceOutRight', value: 'bounceOutRight' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   { id:6, name: 'Fading entrances', animations: [] },
   { id:7, name: 'Fading exits', animations: [] },
   { id:8, name: 'Flippers', animations: [] },
@@ -75,6 +84,10 @@ export const AnimationGroups: AnimationGroupModel[] = [
     id:13, name: 'Zooming entrances',
     animations: [
       {triggerName:'zoomIn', value: 'zoomIn' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomInUp', value: 'zoomInUp' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomInDown', value: 'zoomInDown' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomInLeft', value: 'zoomInDown' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomInRight', value: 'zoomInDown' ,params:{}, canAnimate: false, active: false},
     ]
   },
   { id:14, name: 'Zooming exits', animations: [] },
@@ -87,7 +100,6 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
     {
       triggerName: (config && config.triggerName) || 'animations',
       transitions: [
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomIn'}}),
         swingTransition({...config, ...{stateChangeExpressions:'* => swing'}}),
         bounceTransition({...config, ...{stateChangeExpressions:'* => bounce'}}),
         flashTransition({...config, ...{stateChangeExpressions:'* => flash'}}),
@@ -100,24 +112,38 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         tadaTransition({...config, ...{stateChangeExpressions:'* => tada'}}),
         wobbleTransition({...config, ...{stateChangeExpressions:'* => wobble'}}),
 
-        // bounce int transition with different directions
+        // bounce in transition with different directions
         bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceIn'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInUp', direction: 'Up', timings:'1000ms',translate:'500px'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInDown', direction: 'Down', timings:'1000ms',translate:'500px'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInLeft', direction: 'Left', timings:'1000ms',translate:'500px'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInRight', direction: 'Right', timings:'1000ms',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInUp', direction: 'Up',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInDown', direction: 'Down',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInLeft', direction: 'Left',translate:'500px'}}),
+        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInRight', direction: 'Right',translate:'500px'}}),
+
+        // bounce out transition with different directions
+        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOut'}}),
+        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutUp', direction:'Up',translate:'500px'}}),
+        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutDown', direction:'Down',translate:'500px'}}),
+        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutLeft', direction:'Left',translate:'500px'}}),
+        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutRight', direction:'Right',translate:'500px'}}),
 
         // back out transition with different directions
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutUp',direction: 'Up', timings:'500ms',translateX:'500px'}}),
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutDown',direction: 'Down', timings:'500ms',translateX:'500px'}}),
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutLeft',direction: 'Left', timings:'500ms',translateX:'500px'}}),
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutRight',direction: 'Right', timings:'500ms',translateX:'500px'}}),
+        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutUp',direction: 'Up',translate:'500px'}}),
+        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutDown',direction: 'Down',translate:'500px'}}),
+        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutLeft',direction: 'Left',translate:'500px'}}),
+        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutRight',direction: 'Right',translate:'500px'}}),
 
        // back in transition with different directions
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInUp', direction: 'Up', timings:'500ms',translate:'500px'}}),
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInDown', direction: 'Down', timings:'500ms',translate:'500px'}}),
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInRight', direction: 'Right', timings:'500ms',translate:'500px'}}),
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInLeft', direction: 'Left', timings:'500ms',translate:'500px'}}),
+        backInTransition({...config, ...{stateChangeExpressions:'* => backInUp', direction: 'Up',translate:'500px'}}),
+        backInTransition({...config, ...{stateChangeExpressions:'* => backInDown', direction: 'Down',translate:'500px'}}),
+        backInTransition({...config, ...{stateChangeExpressions:'* => backInRight', direction: 'Right',translate:'500px'}}),
+        backInTransition({...config, ...{stateChangeExpressions:'* => backInLeft', direction: 'Left',translate:'500px'}}),
+
+        // zoom in transition with different directions
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomIn'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInUp', direction: 'Up'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInDown', direction: 'Down', timings: '1000ms'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInLeft', direction: 'Left'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInRight', direction: 'Right'}}),
       ]
     }
   );
