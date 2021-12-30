@@ -35,16 +35,6 @@ export type NestedAnimationsType = keyof typeof NestedAnimations;
 export let DefaultAnimationConfig: AnimationConfig = {triggerName:'animation', stateChangeExpressions: StateChangeExpressions.onEnter, delay: '0ms' , timings: '500ms', nestedAnimations: NestedAnimations.parallel}
 
 
-// functions
-
-export function isLeftOrDownDirection(direction: AnimationDirection): boolean {
-  return [AnimationDirections.Left.toString(), AnimationDirections.Down.toString()].includes(direction);
-}
-
-export function isRightOrUpDirection(direction: AnimationDirection): boolean {
-  return [AnimationDirections.Right.toString(), AnimationDirections.Up.toString()].includes(direction);
-}
-
 // interfaces
 
 export interface AnimationConfig{
@@ -66,5 +56,28 @@ export interface BuildTriggerConfig{
   transitions: TransitionConfig | TransitionConfig[];
 }
 
+// functions
 
+export function isLeftOrDownDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Left.toString(), AnimationDirections.Down.toString()].includes(direction);
+}
 
+export function isRightOrUpDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Right.toString(), AnimationDirections.Up.toString()].includes(direction);
+}
+
+export function isRightOrDownDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Right.toString(), AnimationDirections.Down.toString()].includes(direction);
+}
+
+export function isLeftOrUpDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Left.toString(), AnimationDirections.Up.toString()].includes(direction);
+}
+
+export function isXDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Left.toString(), AnimationDirections.Right.toString()].includes(direction);
+}
+
+export function isYDirection(direction: AnimationDirection): boolean {
+  return [AnimationDirections.Down.toString(), AnimationDirections.Up.toString()].includes(direction);
+}
