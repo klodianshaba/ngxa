@@ -10,7 +10,7 @@ export const backOutKeyframes = (direction?: AnimationDirection): AnimationStyle
 
 export interface BackOutConfig extends AnimationConfig{
   translate: string;
-  direction: AnimationDirection;
+  direction: Exclude<AnimationDirection, 'Out' | 'In'>;
 }
 
 export function backOutDirectionTranslate(direction?: AnimationDirection): string{

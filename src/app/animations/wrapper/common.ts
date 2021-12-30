@@ -23,7 +23,32 @@ export enum AnimationDirections {
   Down = 'Down',
 }
 
+export enum FlipAnimationDirections{
+  X = 'X',
+  Y = 'Y',
+}
+
+export enum FadeAnimationDirections{
+  TopLeft = 'TopLeft',
+  TopRight = 'TopRight',
+  BottomRight = 'BottomRight',
+  BottomLeft = 'BottomLeft',
+}
+
+export enum RotateAnimationDirections{
+  DownLeft = 'DownLeft',
+  DownRight = 'DownRight',
+  UpLeft = 'UpLeft',
+  UpRight = 'UpRight',
+}
 // types
+
+export type RotateAnimationDirection = keyof typeof RotateAnimationDirections | Extract<AnimationDirection, 'In' | 'Out'>;
+
+export type FadeAnimationDirection = keyof typeof FadeAnimationDirections | AnimationDirection;
+
+export type FlipAnimationDirection = keyof typeof FlipAnimationDirections;
+
 export type AnimationDirection = keyof typeof AnimationDirections;
 
 export type StateChangeExpressionsType = keyof typeof StateChangeExpressions;

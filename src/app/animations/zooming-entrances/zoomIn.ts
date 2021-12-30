@@ -12,8 +12,8 @@ import {
 } from "../wrapper";
 
 export const zoomInKeyframes: AnimationStyleMetadata[] = [
-  style({ visibility: 'visible', transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0}),
-  style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1})
+  style({ opacity: 0, visibility: 'visible', transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0}),
+  style({ opacity: 1, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1})
 ];
 
 export const zoomInDirectionKeyframes = (direction: AnimationDirection): AnimationStyleMetadata[] => [

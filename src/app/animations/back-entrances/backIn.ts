@@ -10,7 +10,7 @@ export const backInKeyframes = (direction?: AnimationDirection): AnimationStyleM
 
 export interface BackInConfig extends AnimationConfig{
   translate: string;
-  direction: AnimationDirection;
+  direction: Exclude<AnimationDirection, 'Out' | 'In'>;
 }
 
 export function backInDirectionTranslate(direction?: AnimationDirection): string{

@@ -42,7 +42,7 @@ export function bounceInDirectionTranslateValue(offset: 0 | 0.6 | 0.75 | 0.9, di
 
 export interface BounceInConfig extends AnimationConfig{
   translate: string;
-  direction: AnimationDirection;
+  direction: Exclude<AnimationDirection, 'Out'>;
 }
 
 export const bounceInAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(

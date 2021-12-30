@@ -26,7 +26,7 @@ export const bounceOutDirectionKeyframes = (direction: AnimationDirection): Anim
 
 export interface BounceOutConfig extends AnimationConfig {
   translate: string;
-  direction: AnimationDirection;
+  direction: Exclude<AnimationDirection, 'In'>;
 }
 
 export const bounceOutAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(

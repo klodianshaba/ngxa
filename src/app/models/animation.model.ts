@@ -10,6 +10,8 @@ from "../animations/attention-seekers";
 import {backOutTransition} from "../animations/back-exits";
 import {backInTransition} from "../animations/back-entrances";
 import {bounceOutTransition} from "../animations/bouncing-exits/bounceOut";
+import {zoomOutTransition} from "../animations/zoomings-exits";
+import {rotateInTransition} from "../animations/rotating-entrances";
 
 export interface AnimationModel{
   triggerName:string,
@@ -77,7 +79,15 @@ export const AnimationGroups: AnimationGroupModel[] = [
   { id:7, name: 'Fading exits', animations: [] },
   { id:8, name: 'Flippers', animations: [] },
   { id:9, name: 'Lightspeed', animations: [] },
-  { id:10, name: 'Rotating entrances', animations: [] },
+  { id:10, name: 'Rotating entrances',
+    animations: [
+      {triggerName:'rotateIn', value: 'rotateIn' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateInDownLeft', value: 'rotateInDownLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateInDownRight', value: 'rotateInDownRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateInUpLeft', value: 'rotateInUpLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateInUpRight', value: 'rotateInUpRight' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   { id:11, name: 'Rotating exits', animations: [] },
   { id:12, name: 'Specials', animations: [] },
   {
@@ -90,7 +100,15 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'zoomInRight', value: 'zoomInDown' ,params:{}, canAnimate: false, active: false},
     ]
   },
-  { id:14, name: 'Zooming exits', animations: [] },
+  { id:14, name: 'Zooming exits',
+    animations: [
+      {triggerName:'zoomOut', value: 'zoomOut' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomOutUp', value: 'zoomOutUp' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomOutDown', value: 'zoomOutDown' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomOutLeft', value: 'zoomOutLeft' ,params:{}, canAnimate: false, active: false},
+      {triggerName:'zoomOutRight', value: 'zoomOutRight' ,params:{}, canAnimate: false, active: false},
+    ]
+  },
   { id:15, name: 'Sliding entrances', animations: [] },
   { id:16, name: 'Sliding exits', animations: [] },
 ]
@@ -139,11 +157,26 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         backInTransition({...config, ...{stateChangeExpressions:'* => backInLeft', direction: 'Left',translate:'500px'}}),
 
         // zoom in transition with different directions
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomIn'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInUp', direction: 'Up'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInDown', direction: 'Down', timings: '1000ms'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInLeft', direction: 'Left'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInRight', direction: 'Right'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomIn',timings:'1s'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInUp', direction: 'Up',timings:'1s'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInDown', direction: 'Down',timings:'1s'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInLeft', direction: 'Left',timings:'1s'}}),
+        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInRight', direction: 'Right',timings:'1s'}}),
+
+        // zoom in transition with different directions
+        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOut',timings:'1s'}}),
+        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutUp', direction: 'Up', timings:'1s',translate: '800px'}}),
+        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutDown', direction: 'Down', timings:'1s', translate: '800px'}}),
+        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutLeft', direction: 'Left', timings:'1s',translate: '800px'}}),
+        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutRight', direction: 'Right', timings:'1s',translate: '800px'}}),
+
+        // rotate in transition with different directions
+
+        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateIn',timings:'0.5s'}}),
+        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInDownLeft',timings:'0.5s', direction:'DownLeft'}}),
+        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInDownRight',timings:'0.5s', direction:'DownRight'}}),
+        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInUpLeft',timings:'0.5s', direction:'UpLeft'}}),
+        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInUpRight',timings:'0.5s', direction:'UpRight'}}),
       ]
     }
   );
