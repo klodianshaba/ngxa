@@ -5,6 +5,8 @@ import {LayoutService} from "../../services/layout.service";
 import {zoomIn} from "../../animations/zooming-entrances";
 import {bounceIn} from "../../animations/bouncing-entrances";
 import {listAnimateChild} from "../../animations/list";
+import {lightspeedIn} from "../../animations/lightspeed";
+import {rotateIn} from "../../animations/rotating-entrances";
 
 @Component({
   selector: 'app-header',
@@ -12,10 +14,15 @@ import {listAnimateChild} from "../../animations/list";
   styleUrls: ['./header.component.scss'],
   animations:[
     zoomIn(),
+    zoomIn({direction:'Left', translate:'200px'}),
     bounceIn({timings:'1000ms'}),
-    bounceIn({direction:'Left', timings:'1000ms',translate:'100px'}),
-    bounceIn({direction:'Right', timings:'1000ms',translate:'100px'}),
-    listAnimateChild({timings:'500ms'}),
+    bounceIn({direction:'Left', timings:'1s',translate:'500px'}),
+    bounceIn({direction:'Right', timings:'1s',translate:'500px'}),
+    lightspeedIn({direction:'Left',translate:'100px'}),
+    lightspeedIn({direction:'Right' ,translate:'100px'}),
+    rotateIn({direction:'DownLeft'}),
+    rotateIn({direction:'DownRight'}),
+    listAnimateChild(),
   ]
 })
 export class HeaderComponent implements OnInit {
