@@ -15,6 +15,8 @@ import {rotateInTransition} from "../animations/rotating-entrances";
 import {rotateOutTransition} from "../animations/rotating-exits";
 import {slideInTransition} from "../animations/sliding-entrances";
 import {slideOutTransition} from "../animations/sliding-exits";
+import {lightspeedInTransition} from "../animations/lightspeed/lightspeedIn";
+import {lightspeedOutTransition} from "../animations/lightspeed";
 
 export interface AnimationModel{
   triggerName:string,
@@ -81,7 +83,14 @@ export const AnimationGroups: AnimationGroupModel[] = [
   { id:6, name: 'Fading entrances', animations: [] },
   { id:7, name: 'Fading exits', animations: [] },
   { id:8, name: 'Flippers', animations: [] },
-  { id:9, name: 'Lightspeed', animations: [] },
+  { id:9, name: 'Lightspeed',
+    animations: [
+      {triggerName:'lightspeedInLeft', value: 'lightspeedInLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'lightspeedInRight', value: 'lightspeedInRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'lightspeedOutLeft', value: 'lightspeedOutLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'lightspeedOutRight', value: 'lightspeedOutRight' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   { id:10, name: 'Rotating entrances',
     animations: [
       {triggerName:'rotateIn', value: 'rotateIn' ,params:{}, canAnimate: false,active: false},
@@ -220,6 +229,14 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutDown', direction: 'Down'}}),
         slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutRight', direction: 'Right'}}),
         slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutLeft', direction: 'Left'}}),
+
+        // lightspeed In transition with left right directions
+        lightspeedInTransition({...config, ...{stateChangeExpressions:'* => lightspeedInLeft', direction: 'Left'}}),
+        lightspeedInTransition({...config, ...{stateChangeExpressions:'* => lightspeedInRight', direction: 'Right'}}),
+
+        // lightspeed Out transition with left right directions
+        lightspeedOutTransition({...config, ...{stateChangeExpressions:'* => lightspeedOutLeft', direction: 'Left'}}),
+        lightspeedOutTransition({...config, ...{stateChangeExpressions:'* => lightspeedOutRight', direction: 'Right'}}),
       ]
     }
   );
