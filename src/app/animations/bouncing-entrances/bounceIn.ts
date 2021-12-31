@@ -7,10 +7,21 @@ import {
   AnimationDirections,
   isLeftOrDownDirection,
   TransitionConfig,
-  directionTranslate3d, isYDirection
+  directionTranslate3d,
+  DefaultAnimationConfig,
+  overwriteDefaultAnimationOptions
 } from "../wrapper";
 
-export const bounceInKeyframes: AnimationStyleMetadata[] = [
+type BounceInAnimationDirection = Extract<AnimationDirection, 'In' | 'Down' | 'Up' |'Left' | 'Right'>;
+
+const DefaultBounceInConfig: BounceInConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.In, translate:'3000px', triggerName: 'bounce'}};
+
+interface BounceInConfig extends AnimationConfig{
+  translate: string;
+  direction: BounceInAnimationDirection;
+}
+
+const bounceInKeyframes: AnimationStyleMetadata[] = [
   style({ opacity: 0 , transform: 'scale3d(0.3, 0.3, 0.3)',easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0}),
   style({ transform: 'scale3d(1.1, 1.1, 1.1)',easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: .2}),
   style({ transform: 'scale3d(0.9, 0.9, 0.9)',easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: .4}),
@@ -19,7 +30,7 @@ export const bounceInKeyframes: AnimationStyleMetadata[] = [
   style({ opacity: 1, transform: 'scale3d(1, 1, 1)',easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1} ),
 ];
 
-export const bounceInDirectionKeyframes = (direction: AnimationDirection): AnimationStyleMetadata[] => [
+const bounceInDirectionKeyframes = (direction: AnimationDirection): AnimationStyleMetadata[] => [
   style({ opacity: 0, transform: directionTranslate3d( bounceInDirectionTranslateValue(0,direction), direction), easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
   style({ opacity: 1, transform: directionTranslate3d( bounceInDirectionTranslateValue(0.6,direction), direction), easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6 }),
   style({ transform: directionTranslate3d( bounceInDirectionTranslateValue(0.75,direction), direction) , easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.75 }),
@@ -27,7 +38,7 @@ export const bounceInDirectionKeyframes = (direction: AnimationDirection): Anima
   style({ transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1 })
 ];
 
-export function bounceInDirectionTranslateValue(offset: 0 | 0.6 | 0.75 | 0.9, direction: AnimationDirection): string{
+function bounceInDirectionTranslateValue(offset: 0 | 0.6 | 0.75 | 0.9, direction: AnimationDirection): string{
   switch (offset) {
     case 0:
       return (isLeftOrDownDirection(direction) ) ? '-{{translate}}':'{{translate}}';
@@ -40,31 +51,30 @@ export function bounceInDirectionTranslateValue(offset: 0 | 0.6 | 0.75 | 0.9, di
   }
 }
 
-export interface BounceInConfig extends AnimationConfig{
-  translate: string;
-  direction: Exclude<AnimationDirection, 'Out'>;
+function defaultTriggerName(configs: BounceInConfig): string {
+  return configs.triggerName + ( (configs.direction === AnimationDirections.In) ? AnimationDirections.In : AnimationDirections.In + configs.direction);
 }
 
-export const bounceInAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(
+const bounceInAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(
   animate('{{timings}} {{delay}}',
     keyframes( (direction === AnimationDirections.In) ? bounceInKeyframes : bounceInDirectionKeyframes(direction) )
   )
 );
 
-export const bounceInTransition = (animationConfig?: Partial<BounceInConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
-  animationConfig = { ...{direction: AnimationDirections.In}, ...animationConfig};
+export const bounceInTransition = (animationConfig?: Partial<BounceInConfig>, animationOptions: AnimationOptions | null = null): TransitionConfig => {
+  const configs = { ...DefaultBounceInConfig, ...animationConfig};
   return {
-    animationReferenceMetadata: bounceInAnimation((animationConfig.direction) || AnimationDirections.In ),
+    animationReferenceMetadata: bounceInAnimation(configs.direction),
     animationConfig,
-    animationOptions: {...animationOptions ,...{params: {...{translate: '3000px'}, ...animationOptions?.params} }}
+    animationOptions: overwriteDefaultAnimationOptions({translate: configs.translate},animationOptions)
   }
 }
 
 export function bounceIn(config?: Partial<BounceInConfig>): AnimationTriggerMetadata {
-  config = { ...{direction: AnimationDirections.In}, ...config}
+  const configs: BounceInConfig = { ...DefaultBounceInConfig, ...config}
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || 'bounce' + ( (config.direction === AnimationDirections.In) ? AnimationDirections.In : AnimationDirections.In + config.direction),
+      triggerName: (config && config.triggerName) || defaultTriggerName(configs),
       transitions: bounceInTransition(config)
     }
   )

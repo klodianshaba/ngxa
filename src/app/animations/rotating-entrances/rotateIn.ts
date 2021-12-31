@@ -1,41 +1,22 @@
-import {
-  animate,
-  animation,
-  AnimationOptions,
-  AnimationReferenceMetadata,
-  AnimationStyleMetadata,
-  AnimationTriggerMetadata,
-  keyframes,
-  style
-} from "@angular/animations";
+import {animate, animation, AnimationOptions, AnimationReferenceMetadata, AnimationStyleMetadata, AnimationTriggerMetadata, keyframes, style} from "@angular/animations";
+import {AnimationConfig, AnimationDirection, AnimationDirections, buildTrigger, DefaultAnimationConfig, overwriteDefaultAnimationOptions, TransitionConfig} from "../wrapper";
 
-import {
-  AnimationConfig,
-  AnimationDirections,
-  buildTrigger,
-  DefaultAnimationConfig,
-  RotateAnimationDirection,
-  RotateAnimationDirections,
-  TransitionConfig
-} from "../wrapper";
-
-
-const rotateInDirectionKeyframes = (direction: RotateAnimationDirection): AnimationStyleMetadata[] => [
+const rotateInDirectionKeyframes = (direction: RotateInAnimationDirection): AnimationStyleMetadata[] => [
   style({ opacity: 0 , 'transform-origin': rotateInTransformOriginValue(direction), transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', offset: 0}),
   style({ opacity: 1 , 'transform-origin': rotateInTransformOriginValue(direction), transform: 'translate3d(0, 0, 0)', offset: 1}),
 ];
 
-export function rotateInTransformOriginValue(direction: RotateAnimationDirection): string{
+export function rotateInTransformOriginValue(direction: RotateInAnimationDirection): string{
   switch (direction){
     case AnimationDirections.In:
       return 'center';
-    case RotateAnimationDirections.DownLeft:
+    case AnimationDirections.DownLeft:
       return 'left bottom';
-    case RotateAnimationDirections.DownRight:
+    case AnimationDirections.DownRight:
       return 'right bottom';
-    case RotateAnimationDirections.UpLeft:
+    case AnimationDirections.UpLeft:
       return 'left bottom';
-    case RotateAnimationDirections.UpRight:
+    case AnimationDirections.UpRight:
       return 'right bottom';
     default:
       return 'center';
@@ -43,49 +24,55 @@ export function rotateInTransformOriginValue(direction: RotateAnimationDirection
 }
 
 
-function defaultRotateDirectionDegree(direction: RotateAnimationDirection): number{
+function defaultRotateDirectionDegree(direction: RotateInAnimationDirection): number{
   switch (direction) {
     case AnimationDirections.In:
       return -200;
-    case RotateAnimationDirections.DownLeft:
+    case AnimationDirections.DownLeft:
       return -45;
-    case RotateAnimationDirections.DownRight:
+    case AnimationDirections.DownRight:
       return 45;
-    case RotateAnimationDirections.UpLeft:
+    case AnimationDirections.UpLeft:
       return 45;
-    case RotateAnimationDirections.UpRight:
+    case AnimationDirections.UpRight:
       return -45;
     default:
       return -200;
   }
 }
 
+function defaultTriggerName(configs: RotateInConfig): string {
+ return configs.triggerName + ( (configs.direction === AnimationDirections.In) ? AnimationDirections.In : AnimationDirections.In + configs.direction);
+}
 
 interface RotateInConfig extends AnimationConfig{
   degrees: number;
-  direction: RotateAnimationDirection;
+  direction: RotateInAnimationDirection;
 }
 
-const rotateInAnimation = (direction: RotateAnimationDirection): AnimationReferenceMetadata =>  animation(
+type RotateInAnimationDirection = Extract<AnimationDirection, 'In' | 'DownLeft' | 'DownRight' |'UpLeft' | 'UpRight'>;
+
+const DefaultRotateInConfig: RotateInConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.In, degrees:-200, triggerName: 'rotate'}};
+
+const rotateInAnimation = (direction: RotateInAnimationDirection): AnimationReferenceMetadata =>  animation(
   animate('{{timings}} {{delay}}', keyframes( rotateInDirectionKeyframes(direction) ))
 );
 
-const DefaultRotateInConfig: RotateInConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.In, degrees:-200, triggerName: 'rotateIn'}};
-
-export const rotateInTransition = (animationConfig?: Partial<RotateInConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
-  let configs: RotateInConfig = { ...DefaultRotateInConfig, ...animationConfig};
+export const rotateInTransition = (animationConfig?: Partial<RotateInConfig>, animationOptions: AnimationOptions | null = null): TransitionConfig => {
+  const configs: RotateInConfig = { ...DefaultRotateInConfig, ...animationConfig};
+  const degrees = (animationConfig && animationConfig.degrees) || defaultRotateDirectionDegree(configs.direction);
   return {
     animationReferenceMetadata: rotateInAnimation(configs.direction),
     animationConfig,
-    animationOptions: {...animationOptions ,...{params: {...{degrees: (animationConfig && animationConfig.degrees) || defaultRotateDirectionDegree(configs.direction) }, ...animationOptions?.params} }}
+    animationOptions: overwriteDefaultAnimationOptions( {degrees}, animationOptions)
   }
 }
 
 export function rotateIn(config?: Partial<RotateInConfig>): AnimationTriggerMetadata {
-  let configs: RotateInConfig = { ...DefaultRotateInConfig, ...config}
+  const configs: RotateInConfig = { ...DefaultRotateInConfig, ...config}
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || configs.triggerName + (configs.direction !== AnimationDirections.In) ? configs.direction : '',
+      triggerName: (config && config.triggerName) || defaultTriggerName(configs),
       transitions: rotateInTransition(config)
     }
   )

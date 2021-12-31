@@ -15,39 +15,25 @@ export enum StateChangeExpressions{
 }
 
 export enum AnimationDirections {
+  X = 'X',
+  Y = 'Y',
   In = 'In',
   Out = 'Out',
   Left = 'Left',
   Right = 'Right',
   Up = 'Up',
   Down = 'Down',
-}
-
-export enum FlipAnimationDirections{
-  X = 'X',
-  Y = 'Y',
-}
-
-export enum FadeAnimationDirections{
   TopLeft = 'TopLeft',
   TopRight = 'TopRight',
   BottomRight = 'BottomRight',
   BottomLeft = 'BottomLeft',
-}
-
-export enum RotateAnimationDirections{
   DownLeft = 'DownLeft',
   DownRight = 'DownRight',
   UpLeft = 'UpLeft',
   UpRight = 'UpRight',
 }
+
 // types
-
-export type RotateAnimationDirection = keyof typeof RotateAnimationDirections | Extract<AnimationDirection, 'In' | 'Out'>;
-
-export type FadeAnimationDirection = keyof typeof FadeAnimationDirections | AnimationDirection;
-
-export type FlipAnimationDirection = keyof typeof FlipAnimationDirections;
 
 export type AnimationDirection = keyof typeof AnimationDirections;
 
@@ -81,6 +67,8 @@ export interface BuildTriggerConfig{
   transitions: TransitionConfig | TransitionConfig[];
 }
 
+// functions
+
 export function directionTranslate3d(translate: string, direction?: AnimationDirection): string{
   switch (direction){
     case AnimationDirections.Left:
@@ -96,7 +84,9 @@ export function directionTranslate3d(translate: string, direction?: AnimationDir
   }
 }
 
-// functions
+export function overwriteDefaultAnimationOptions(defaultParams: { [name: string]: any; } = {} ,animationOptions: AnimationOptions | null ): AnimationOptions | null{
+  return {...animationOptions ,...{params: {...defaultParams, ...animationOptions?.params } } }
+}
 
 export function isLeftOrDownDirection(direction: AnimationDirection): boolean {
   return [AnimationDirections.Left.toString(), AnimationDirections.Down.toString()].includes(direction);

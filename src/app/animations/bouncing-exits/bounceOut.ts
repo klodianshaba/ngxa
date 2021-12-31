@@ -7,7 +7,7 @@ import {
   AnimationDirections,
   TransitionConfig,
   isLeftOrUpDirection,
-  directionTranslate3d
+  directionTranslate3d, DefaultAnimationConfig, overwriteDefaultAnimationOptions
 } from "../wrapper";
 
 export const bounceOutKeyframes: AnimationStyleMetadata[] = [
@@ -24,31 +24,39 @@ export const bounceOutDirectionKeyframes = (direction: AnimationDirection): Anim
   style({ transform: directionTranslate3d(  (isLeftOrUpDirection(direction) ) ? '-{{translate}}':'{{translate}}', direction), offset: 1 }),
 ];
 
-export interface BounceOutConfig extends AnimationConfig {
+type BounceOutAnimationDirection = Extract<AnimationDirection, 'Out' | 'Down' | 'Up' |'Left' | 'Right'>;
+
+const DefaultBounceOutConfig: BounceOutConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.Out, translate:'2000px', triggerName: 'bounce'}};
+
+interface BounceOutConfig extends AnimationConfig {
   translate: string;
-  direction: Exclude<AnimationDirection, 'In'>;
+  direction: BounceOutAnimationDirection;
 }
 
-export const bounceOutAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(
+function defaultTriggerName(configs: BounceOutConfig): string {
+  return configs.triggerName + ( (configs.direction === AnimationDirections.Out) ? AnimationDirections.Out  : AnimationDirections.Out + configs.direction);
+}
+
+const bounceOutAnimation = (direction: AnimationDirection): AnimationReferenceMetadata =>  animation(
   animate('{{timings}} {{delay}}',
     keyframes( (direction === AnimationDirections.Out) ? bounceOutKeyframes : bounceOutDirectionKeyframes(direction) )
   )
 );
 
-export const bounceOutTransition = (animationConfig?: Partial<BounceOutConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
-  animationConfig = { ...{direction: AnimationDirections.Out}, ...animationConfig};
+export const bounceOutTransition = (animationConfig?: Partial<BounceOutConfig>, animationOptions: AnimationOptions | null = null): TransitionConfig => {
+  const configs: BounceOutConfig = { ...DefaultBounceOutConfig, ...animationConfig}
   return {
-    animationReferenceMetadata: bounceOutAnimation((animationConfig.direction) || AnimationDirections.Out ),
+    animationReferenceMetadata: bounceOutAnimation(configs.direction),
     animationConfig,
-    animationOptions: {...animationOptions ,...{params: {...{translate: '2000px'}, ...animationOptions?.params} }}
+    animationOptions: overwriteDefaultAnimationOptions({translate: configs.translate}, animationOptions)
   }
 }
 
 export function bounceOut(config?: Partial<BounceOutConfig>): AnimationTriggerMetadata {
-  config = { ...{direction: AnimationDirections.Out}, ...config}
+  const configs: BounceOutConfig = { ...DefaultBounceOutConfig, ...config}
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || 'bounce' + ( (config.direction === AnimationDirections.Out) ? AnimationDirections.Out  : AnimationDirections.Out + config.direction),
+      triggerName: (config && config.triggerName) || defaultTriggerName(configs),
       transitions: bounceOutTransition(config)
     }
   )

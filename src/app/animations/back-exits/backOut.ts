@@ -1,19 +1,23 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata, AnimationReferenceMetadata} from "@angular/animations";
-import {buildTrigger} from "../wrapper";
+import {buildTrigger, DefaultAnimationConfig, overwriteDefaultAnimationOptions} from "../wrapper";
 import {AnimationConfig, TransitionConfig, AnimationDirections, AnimationDirection} from "../wrapper";
 
-export const backOutKeyframes = (direction?: AnimationDirection): AnimationStyleMetadata[] => [
+const backOutKeyframes = (direction: BackOutAnimationDirection): AnimationStyleMetadata[] => [
   style({ opacity: 1, transform: 'scale(1)', offset: 0 }),
   style({ opacity: 0.7, transform: 'translateY(0px) scale(0.7)', offset: 0.2 }),
   style({ opacity: 0.7, transform: backOutDirectionTranslate(direction) + ' scale(0.7)',  offset: 1 }),
 ];
 
-export interface BackOutConfig extends AnimationConfig{
+type BackOutAnimationDirection = Extract<AnimationDirection, 'Down' | 'Up' |'Left' | 'Right'>;
+
+const DefaultBackOutConfig: BackOutConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.Left, translate:'1200px', triggerName: 'backOut'}};
+
+interface BackOutConfig extends AnimationConfig{
   translate: string;
-  direction: Exclude<AnimationDirection, 'Out' | 'In'>;
+  direction: BackOutAnimationDirection;
 }
 
-export function backOutDirectionTranslate(direction?: AnimationDirection): string{
+function backOutDirectionTranslate(direction: BackOutAnimationDirection): string{
   switch (direction){
     case AnimationDirections.Left:
       return 'translateX(-{{translate}})';
@@ -28,20 +32,22 @@ export function backOutDirectionTranslate(direction?: AnimationDirection): strin
   }
 }
 
-export const backOutAnimation = (direction?: AnimationDirection): AnimationReferenceMetadata =>  animation( animate('{{timings}} {{delay}}', keyframes(backOutKeyframes( direction ) ) ));
+const backOutAnimation = (direction: BackOutAnimationDirection): AnimationReferenceMetadata =>  animation( animate('{{timings}} {{delay}}', keyframes(backOutKeyframes( direction ) ) ));
 
-export const backOutTransition = (animationConfig?: Partial<BackOutConfig>, animationOptions?: AnimationOptions | null): TransitionConfig => {
+export const backOutTransition = (animationConfig?: Partial<BackOutConfig>, animationOptions: AnimationOptions | null = null): TransitionConfig => {
+  const configs: BackOutConfig = {...DefaultBackOutConfig, ...animationConfig};
   return {
-    animationReferenceMetadata: backOutAnimation((animationConfig && animationConfig.direction)),
+    animationReferenceMetadata: backOutAnimation(configs.direction),
     animationConfig,
-    animationOptions: {...animationOptions ,...{params: {...{translate: '1200px'}, ...animationOptions?.params} }}
+    animationOptions: overwriteDefaultAnimationOptions({translate: configs.translate}, animationOptions)
   }
 }
 
 export function backOut(config?: Partial<BackOutConfig>): AnimationTriggerMetadata {
+  const configs: BackOutConfig = {...DefaultBackOutConfig, ...config};
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || 'backOut' + ( (config && config.direction) || AnimationDirections.Left ),
+      triggerName: (config && config.triggerName) || configs.triggerName + configs.direction,
       transitions: backOutTransition(config)
     }
   )

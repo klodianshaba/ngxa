@@ -12,6 +12,7 @@ import {backInTransition} from "../animations/back-entrances";
 import {bounceOutTransition} from "../animations/bouncing-exits/bounceOut";
 import {zoomOutTransition} from "../animations/zoomings-exits";
 import {rotateInTransition} from "../animations/rotating-entrances";
+import {rotateOutTransition} from "../animations/rotating-exits/rotateOut";
 
 export interface AnimationModel{
   triggerName:string,
@@ -88,7 +89,15 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'rotateInUpRight', value: 'rotateInUpRight' ,params:{}, canAnimate: false,active: false},
     ]
   },
-  { id:11, name: 'Rotating exits', animations: [] },
+  { id:11, name: 'Rotating exits',
+    animations: [
+      {triggerName:'rotateOut', value: 'rotateIn' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateOutDownLeft', value: 'rotateOutDownLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateOutDownRight', value: 'rotateOutDownRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateOutUpLeft', value: 'rotateOutUpLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rotateOutUpRight', value: 'rotateOutUpRight' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   { id:12, name: 'Specials', animations: [] },
   {
     id:13, name: 'Zooming entrances',
@@ -171,12 +180,18 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutRight', direction: 'Right', timings:'1s',translate: '800px'}}),
 
         // rotate in transition with different directions
-
         rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateIn',timings:'0.5s'}}),
         rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInDownLeft',timings:'0.5s', direction:'DownLeft'}}),
         rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInDownRight',timings:'0.5s', direction:'DownRight'}}),
         rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInUpLeft',timings:'0.5s', direction:'UpLeft'}}),
         rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInUpRight',timings:'0.5s', direction:'UpRight'}}),
+
+        // rotate in transition with different directions
+        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOut',timings:'0.5s'}}),
+        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutDownLeft',timings:'0.5s', direction:'DownLeft'}}),
+        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutDownRight',timings:'0.5s', direction:'DownRight'}}),
+        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutUpLeft',timings:'0.5s', direction:'UpLeft'}}),
+        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutUpRight',timings:'0.5s', direction:'UpRight'}}),
       ]
     }
   );

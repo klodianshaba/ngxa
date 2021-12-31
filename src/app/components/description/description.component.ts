@@ -10,8 +10,8 @@ import {listAnimateChild} from "../../animations/list";
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss'],
   animations: [
+    zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
     zoomIn({stateChangeExpressions:':enter, 0 => 1', timings:'1s', direction: 'Down'}),
-    zoomIn({stateChangeExpressions:':enter, 0 => 1',}),
     bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
     swing({stateChangeExpressions:':enter, 0 => 1'}),
     listAnimateChild({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
@@ -25,8 +25,7 @@ export class DescriptionComponent implements OnInit {
   status: boolean = true;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   animate() {
     this.status = false;
