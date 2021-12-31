@@ -18,6 +18,7 @@ import {slideOutTransition} from "../animations/sliding-exits";
 import {lightspeedInTransition} from "../animations/lightspeed/lightspeedIn";
 import {lightspeedOutTransition} from "../animations/lightspeed";
 import {hingeTransition} from "../animations/specials/hinge";
+import {jackInTheBoxTransition} from "../animations/specials/jackInTheBox";
 
 export interface AnimationModel{
   triggerName:string,
@@ -113,6 +114,7 @@ export const AnimationGroups: AnimationGroupModel[] = [
   { id:12, name: 'Specials',
     animations: [
       {triggerName:'hinge', value: 'hinge' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'jackInTheBox', value: 'jackInTheBox' ,params:{}, canAnimate: false,active: false},
     ]
   },
   {
@@ -244,7 +246,8 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         lightspeedOutTransition({stateChangeExpressions:'* => lightspeedOutRight', direction: 'Right'}),
 
         //specials
-        hingeTransition({stateChangeExpressions:'* => hinge', timings: '1s'})
+        hingeTransition({stateChangeExpressions:'* => hinge', timings: '1s'}),
+        jackInTheBoxTransition({stateChangeExpressions:'* => jackInTheBox', timings: '1s'})
       ]
     }
   );
