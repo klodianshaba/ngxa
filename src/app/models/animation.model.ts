@@ -17,6 +17,7 @@ import {slideInTransition} from "../animations/sliding-entrances";
 import {slideOutTransition} from "../animations/sliding-exits";
 import {lightspeedInTransition} from "../animations/lightspeed/lightspeedIn";
 import {lightspeedOutTransition} from "../animations/lightspeed";
+import {hingeTransition} from "../animations/specials/hinge";
 
 export interface AnimationModel{
   triggerName:string,
@@ -109,7 +110,11 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'rotateOutUpRight', value: 'rotateOutUpRight' ,params:{}, canAnimate: false,active: false},
     ]
   },
-  { id:12, name: 'Specials', animations: [] },
+  { id:12, name: 'Specials',
+    animations: [
+      {triggerName:'hinge', value: 'hinge' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   {
     id:13, name: 'Zooming entrances',
     animations: [
@@ -152,91 +157,94 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
     {
       triggerName: (config && config.triggerName) || 'animations',
       transitions: [
-        swingTransition({...config, ...{stateChangeExpressions:'* => swing'}}),
-        bounceTransition({...config, ...{stateChangeExpressions:'* => bounce'}}),
-        flashTransition({...config, ...{stateChangeExpressions:'* => flash'}}),
-        headShakeTransition({...config, ...{stateChangeExpressions:'* => headShake'}}),
-        heartBeatTransition({...config, ...{stateChangeExpressions:'* => heartBeat'}}),
-        jelloTransition({...config, ...{stateChangeExpressions:'* => jello'}}),
-        pulseTransition({...config, ...{stateChangeExpressions:'* => pulse'}}),
-        rubberBandTransition({...config, ...{stateChangeExpressions:'* => rubberBand'}}),
-        shakeTransition({...config, ...{stateChangeExpressions:'* => shake'}}),
-        tadaTransition({...config, ...{stateChangeExpressions:'* => tada'}}),
-        wobbleTransition({...config, ...{stateChangeExpressions:'* => wobble'}}),
+        swingTransition({stateChangeExpressions:'* => swing'}),
+        bounceTransition({stateChangeExpressions:'* => bounce'}),
+        flashTransition({stateChangeExpressions:'* => flash'}),
+        headShakeTransition({stateChangeExpressions:'* => headShake'}),
+        heartBeatTransition({stateChangeExpressions:'* => heartBeat'}),
+        jelloTransition({stateChangeExpressions:'* => jello'}),
+        pulseTransition({stateChangeExpressions:'* => pulse'}),
+        rubberBandTransition({stateChangeExpressions:'* => rubberBand'}),
+        shakeTransition({stateChangeExpressions:'* => shake'}),
+        tadaTransition({stateChangeExpressions:'* => tada'}),
+        wobbleTransition({stateChangeExpressions:'* => wobble'}),
 
         // bounce in transition with different directions
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceIn'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInUp', direction: 'Up',translate:'500px'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInDown', direction: 'Down',translate:'500px'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInLeft', direction: 'Left',translate:'500px'}}),
-        bounceInTransition({...config, ...{stateChangeExpressions:'* => bounceInRight', direction: 'Right',translate:'500px'}}),
+        bounceInTransition({stateChangeExpressions:'* => bounceIn'}),
+        bounceInTransition({stateChangeExpressions:'* => bounceInUp', direction: 'Up',translate:'500px'}),
+        bounceInTransition({stateChangeExpressions:'* => bounceInDown', direction: 'Down',translate:'500px'}),
+        bounceInTransition({stateChangeExpressions:'* => bounceInLeft', direction: 'Left',translate:'500px'}),
+        bounceInTransition({stateChangeExpressions:'* => bounceInRight', direction: 'Right',translate:'500px'}),
 
         // bounce out transition with different directions
-        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOut'}}),
-        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutUp', direction:'Up',translate:'500px'}}),
-        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutDown', direction:'Down',translate:'500px'}}),
-        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutLeft', direction:'Left',translate:'500px'}}),
-        bounceOutTransition({...config, ...{stateChangeExpressions:'* => bounceOutRight', direction:'Right',translate:'500px'}}),
+        bounceOutTransition({stateChangeExpressions:'* => bounceOut'}),
+        bounceOutTransition({stateChangeExpressions:'* => bounceOutUp', direction:'Up',translate:'500px'}),
+        bounceOutTransition({stateChangeExpressions:'* => bounceOutDown', direction:'Down',translate:'500px'}),
+        bounceOutTransition({stateChangeExpressions:'* => bounceOutLeft', direction:'Left',translate:'500px'}),
+        bounceOutTransition({stateChangeExpressions:'* => bounceOutRight', direction:'Right',translate:'500px'}),
 
         // back out transition with different directions
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutUp',direction: 'Up',translate:'500px'}}),
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutDown',direction: 'Down',translate:'500px'}}),
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutLeft',direction: 'Left',translate:'500px'}}),
-        backOutTransition({...config, ...{stateChangeExpressions:'* => backOutRight',direction: 'Right',translate:'500px'}}),
+        backOutTransition({stateChangeExpressions:'* => backOutUp',direction: 'Up',translate:'500px'}),
+        backOutTransition({stateChangeExpressions:'* => backOutDown',direction: 'Down',translate:'500px'}),
+        backOutTransition({stateChangeExpressions:'* => backOutLeft',direction: 'Left',translate:'500px'}),
+        backOutTransition({stateChangeExpressions:'* => backOutRight',direction: 'Right',translate:'500px'}),
 
        // back in transition with different directions
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInUp', direction: 'Up',translate:'500px'}}),
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInDown', direction: 'Down',translate:'500px'}}),
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInRight', direction: 'Right',translate:'500px'}}),
-        backInTransition({...config, ...{stateChangeExpressions:'* => backInLeft', direction: 'Left',translate:'500px'}}),
+        backInTransition({stateChangeExpressions:'* => backInUp', direction: 'Up',translate:'500px'}),
+        backInTransition({stateChangeExpressions:'* => backInDown', direction: 'Down',translate:'500px'}),
+        backInTransition({stateChangeExpressions:'* => backInRight', direction: 'Right',translate:'500px'}),
+        backInTransition({stateChangeExpressions:'* => backInLeft', direction: 'Left',translate:'500px'}),
 
         // zoom in transition with different directions
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomIn',timings:'1s'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInUp', direction: 'Up',timings:'1s'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInDown', direction: 'Down',timings:'1s'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInLeft', direction: 'Left',timings:'1s'}}),
-        zoomInTransition({...config, ...{stateChangeExpressions:'* => zoomInRight', direction: 'Right',timings:'1s'}}),
+        zoomInTransition({stateChangeExpressions:'* => zoomIn',timings:'1s'}),
+        zoomInTransition({stateChangeExpressions:'* => zoomInUp', direction: 'Up',timings:'1s'}),
+        zoomInTransition({stateChangeExpressions:'* => zoomInDown', direction: 'Down',timings:'1s'}),
+        zoomInTransition({stateChangeExpressions:'* => zoomInLeft', direction: 'Left',timings:'1s'}),
+        zoomInTransition({stateChangeExpressions:'* => zoomInRight', direction: 'Right',timings:'1s'}),
 
         // zoom in transition with different directions
-        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOut',timings:'1s'}}),
-        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutUp', direction: 'Up', timings:'1s',translate: '800px'}}),
-        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutDown', direction: 'Down', timings:'1s', translate: '800px'}}),
-        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutLeft', direction: 'Left', timings:'1s',translate: '800px'}}),
-        zoomOutTransition({...config, ...{stateChangeExpressions:'* => zoomOutRight', direction: 'Right', timings:'1s',translate: '800px'}}),
+        zoomOutTransition({stateChangeExpressions:'* => zoomOut',timings:'1s'}),
+        zoomOutTransition({stateChangeExpressions:'* => zoomOutUp', direction: 'Up', timings:'1s',translate: '800px'}),
+        zoomOutTransition({stateChangeExpressions:'* => zoomOutDown', direction: 'Down', timings:'1s', translate: '800px'}),
+        zoomOutTransition({stateChangeExpressions:'* => zoomOutLeft', direction: 'Left', timings:'1s',translate: '800px'}),
+        zoomOutTransition({stateChangeExpressions:'* => zoomOutRight', direction: 'Right', timings:'1s',translate: '800px'}),
 
         // rotate in transition with different directions
-        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateIn',timings:'0.5s'}}),
-        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInDownLeft',timings:'0.5s', direction:'DownLeft'}}),
-        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInDownRight',timings:'0.5s', direction:'DownRight'}}),
-        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInUpLeft',timings:'0.5s', direction:'UpLeft'}}),
-        rotateInTransition({...config, ...{stateChangeExpressions:'* => rotateInUpRight',timings:'0.5s', direction:'UpRight'}}),
+        rotateInTransition({stateChangeExpressions:'* => rotateIn',timings:'0.5s'}),
+        rotateInTransition({stateChangeExpressions:'* => rotateInDownLeft',timings:'0.5s', direction:'DownLeft'}),
+        rotateInTransition({stateChangeExpressions:'* => rotateInDownRight',timings:'0.5s', direction:'DownRight'}),
+        rotateInTransition({stateChangeExpressions:'* => rotateInUpLeft',timings:'0.5s', direction:'UpLeft'}),
+        rotateInTransition({stateChangeExpressions:'* => rotateInUpRight',timings:'0.5s', direction:'UpRight'}),
 
         // rotate in transition with different directions
-        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOut',timings:'0.5s'}}),
-        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutDownLeft',timings:'0.5s', direction:'DownLeft'}}),
-        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutDownRight',timings:'0.5s', direction:'DownRight'}}),
-        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutUpLeft',timings:'0.5s', direction:'UpLeft'}}),
-        rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutUpRight',timings:'0.5s', direction:'UpRight'}}),
+        rotateOutTransition({stateChangeExpressions:'* => rotateOut',timings:'0.5s'}),
+        rotateOutTransition({stateChangeExpressions:'* => rotateOutDownLeft',timings:'0.5s', direction:'DownLeft'}),
+        rotateOutTransition({stateChangeExpressions:'* => rotateOutDownRight',timings:'0.5s', direction:'DownRight'}),
+        rotateOutTransition({stateChangeExpressions:'* => rotateOutUpLeft',timings:'0.5s', direction:'UpLeft'}),
+        rotateOutTransition({stateChangeExpressions:'* => rotateOutUpRight',timings:'0.5s', direction:'UpRight'}),
 
         // slide in transition with different directions
-        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInUp', direction: 'Up'}}),
-        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInDown', direction: 'Down'}}),
-        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInRight', direction: 'Right'}}),
-        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInLeft', direction: 'Left'}}),
+        slideInTransition({stateChangeExpressions:'* => slideInUp', direction: 'Up'}),
+        slideInTransition({stateChangeExpressions:'* => slideInDown', direction: 'Down'}),
+        slideInTransition({stateChangeExpressions:'* => slideInRight', direction: 'Right'}),
+        slideInTransition({stateChangeExpressions:'* => slideInLeft', direction: 'Left'}),
 
         // slide out transition with different directions
-        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutUp', direction: 'Up'}}),
-        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutDown', direction: 'Down'}}),
-        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutRight', direction: 'Right'}}),
-        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutLeft', direction: 'Left'}}),
+        slideOutTransition({stateChangeExpressions:'* => slideOutUp', direction: 'Up'}),
+        slideOutTransition({stateChangeExpressions:'* => slideOutDown', direction: 'Down'}),
+        slideOutTransition({stateChangeExpressions:'* => slideOutRight', direction: 'Right'}),
+        slideOutTransition({stateChangeExpressions:'* => slideOutLeft', direction: 'Left'}),
 
         // lightspeed In transition with left right directions
-        lightspeedInTransition({...config, ...{stateChangeExpressions:'* => lightspeedInLeft', direction: 'Left'}}),
-        lightspeedInTransition({...config, ...{stateChangeExpressions:'* => lightspeedInRight', direction: 'Right'}}),
+        lightspeedInTransition({stateChangeExpressions:'* => lightspeedInLeft', direction: 'Left'}),
+        lightspeedInTransition({stateChangeExpressions:'* => lightspeedInRight', direction: 'Right'}),
 
         // lightspeed Out transition with left right directions
-        lightspeedOutTransition({...config, ...{stateChangeExpressions:'* => lightspeedOutLeft', direction: 'Left'}}),
-        lightspeedOutTransition({...config, ...{stateChangeExpressions:'* => lightspeedOutRight', direction: 'Right'}}),
+        lightspeedOutTransition({stateChangeExpressions:'* => lightspeedOutLeft', direction: 'Left'}),
+        lightspeedOutTransition({stateChangeExpressions:'* => lightspeedOutRight', direction: 'Right'}),
+
+        //specials
+        hingeTransition({stateChangeExpressions:'* => hinge', timings: '1s'})
       ]
     }
   );
