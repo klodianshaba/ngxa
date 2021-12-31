@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
   public groups: AnimationGroupModel[] = AnimationGroups;
 
-  public animation: AnimationModel | undefined = this.findAnimation('flash');
+  public animation: AnimationModel | undefined = this.findAnimation('zoomInDown');
 
   constructor(private cdf: ChangeDetectorRef, private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.queryParams.subscribe(params => {
