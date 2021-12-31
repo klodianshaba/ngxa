@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AnimationGroupModel, AnimationModel, AnimationGroups, animations} from "../../models";
 import {Router} from "@angular/router";
 import {zoomIn} from "../../animations/zooming-entrances";
@@ -17,13 +17,19 @@ import {listAnimateChild} from "../../animations/list";
     listAnimateChild({timings:'100ms', stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, AfterViewInit {
 
   public groups: AnimationGroupModel[] = AnimationGroups;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    const el =  document.getElementById("active-animation");
+    el?.parentElement?.scrollIntoView({behavior:'smooth'});
+  }
+
 
   onClick(groupIndex: number, animation: AnimationModel): void{
     this.onAnimateIt(groupIndex,animation);
