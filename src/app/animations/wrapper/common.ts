@@ -69,7 +69,7 @@ export interface BuildTriggerConfig{
 
 // functions
 
-export function directionTranslate3d(translate: string, direction?: AnimationDirection): string{
+export function directionTranslate3d(translate: string, direction: AnimationDirection): string{
   switch (direction){
     case AnimationDirections.Left:
       return 'translate3d('+ translate +',0 ,0)';

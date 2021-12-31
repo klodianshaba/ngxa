@@ -12,7 +12,9 @@ import {backInTransition} from "../animations/back-entrances";
 import {bounceOutTransition} from "../animations/bouncing-exits/bounceOut";
 import {zoomOutTransition} from "../animations/zoomings-exits";
 import {rotateInTransition} from "../animations/rotating-entrances";
-import {rotateOutTransition} from "../animations/rotating-exits/rotateOut";
+import {rotateOutTransition} from "../animations/rotating-exits";
+import {slideInTransition} from "../animations/sliding-entrances";
+import {slideOutTransition} from "../animations/sliding-exits";
 
 export interface AnimationModel{
   triggerName:string,
@@ -118,8 +120,22 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'zoomOutRight', value: 'zoomOutRight' ,params:{}, canAnimate: false, active: false},
     ]
   },
-  { id:15, name: 'Sliding entrances', animations: [] },
-  { id:16, name: 'Sliding exits', animations: [] },
+  { id:15, name: 'Sliding entrances',
+    animations: [
+      {triggerName:'slideInDown', value: 'slideInDown' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'slideInLeft', value: 'slideInLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'slideInRight', value: 'slideInRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'slideInUp', value: 'slideInUp' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
+  { id:16, name: 'Sliding exits',
+    animations: [
+      {triggerName:'slideOutDown', value: 'slideOutDown' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'slideOutLeft', value: 'slideOutLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'slideOutRight', value: 'slideOutRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'slideOutUp', value: 'slideOutUp' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
 ]
 
 export function animations(config?: Partial<AnimationConfig>): AnimationTriggerMetadata{
@@ -192,6 +208,18 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutDownRight',timings:'0.5s', direction:'DownRight'}}),
         rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutUpLeft',timings:'0.5s', direction:'UpLeft'}}),
         rotateOutTransition({...config, ...{stateChangeExpressions:'* => rotateOutUpRight',timings:'0.5s', direction:'UpRight'}}),
+
+        // slide in transition with different directions
+        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInUp', direction: 'Up'}}),
+        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInDown', direction: 'Down'}}),
+        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInRight', direction: 'Right'}}),
+        slideInTransition({...config, ...{stateChangeExpressions:'* => slideInLeft', direction: 'Left'}}),
+
+        // slide out transition with different directions
+        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutUp', direction: 'Up'}}),
+        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutDown', direction: 'Down'}}),
+        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutRight', direction: 'Right'}}),
+        slideOutTransition({...config, ...{stateChangeExpressions:'* => slideOutLeft', direction: 'Left'}}),
       ]
     }
   );
