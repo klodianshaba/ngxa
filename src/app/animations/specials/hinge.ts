@@ -8,10 +8,10 @@ const hingeKeyframes: AnimationStyleMetadata[] = [
   style({ opacity: 1, 'transform-origin': 'top left', transform: 'rotate3d(0, 0, 1, 60deg)', easing: 'ease-in-out', offset: 0.4 }),
   style({ opacity: 1, 'transform-origin': 'top left', transform: 'rotate3d(0, 0, 1, 80deg)', easing: 'ease-in-out', offset: 0.6 }),
   style({ opacity: 1, 'transform-origin': 'top left', transform: 'rotate3d(0, 0, 1, 60deg)', easing: 'ease-in-out', offset: 0.8 }),
-  style({ opacity: 0, 'transform-origin': 'top left', transform: 'translate3d(0, 700px, 0)', easing: 'ease-in-out', offset: 1 })
+  style({ opacity: 0, 'transform-origin': 'top left', transform: 'translate3d(0, {{translate}}, 0)', easing: 'ease-in-out', offset: 1 })
 ];
 
-const DefaultHingeConfig: HingeConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.Left, translate:'1200px', triggerName: 'hinge'}};
+const DefaultHingeConfig: HingeConfig = {...DefaultAnimationConfig, ...{direction: AnimationDirections.Left, translate:'700px', triggerName: 'hinge'}};
 
 interface HingeConfig extends AnimationConfig{
   translate: string;
