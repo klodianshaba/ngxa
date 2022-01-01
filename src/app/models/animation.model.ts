@@ -19,6 +19,7 @@ import {lightspeedInTransition} from "../animations/lightspeed/lightspeedIn";
 import {lightspeedOutTransition} from "../animations/lightspeed";
 import {hingeTransition} from "../animations/specials/hinge";
 import {jackInTheBoxTransition} from "../animations/specials/jackInTheBox";
+import {rollTransition} from "../animations/specials/roll";
 
 export interface AnimationModel{
   triggerName:string,
@@ -115,6 +116,8 @@ export const AnimationGroups: AnimationGroupModel[] = [
     animations: [
       {triggerName:'hinge', value: 'hinge' ,params:{}, canAnimate: false,active: false},
       {triggerName:'jackInTheBox', value: 'jackInTheBox' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rollIn', value: 'rollIn' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'rollOut', value: 'rollOut' ,params:{}, canAnimate: false,active: false},
     ]
   },
   {
@@ -247,7 +250,9 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
 
         //specials
         hingeTransition({stateChangeExpressions:'* => hinge', timings: '1s'}),
-        jackInTheBoxTransition({stateChangeExpressions:'* => jackInTheBox', timings: '1s'})
+        jackInTheBoxTransition({stateChangeExpressions:'* => jackInTheBox', timings: '1s'}),
+        rollTransition({stateChangeExpressions:'* => rollIn', direction: 'In',translate:'500px', degrees:320}),
+        rollTransition({stateChangeExpressions:'* => rollOut', direction:'Out',translate:'500px', degrees:320}),
       ]
     }
   );
