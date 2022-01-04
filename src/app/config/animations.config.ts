@@ -1,5 +1,6 @@
-import {AnimationConfig, buildTrigger} from "../animations/wrapper";
 import {AnimationTriggerMetadata} from "@angular/animations";
+import {AnimationConfig} from "../../../ngxa/common";
+import {buildTrigger} from "../../../ngxa/base";
 import {
   backInTransition, backOutTransition, bounceInTransition, bounceOutTransition, bounceTransition,
   fadeInTransition, fadeOutTransition, flashTransition, flipInTransition, flipOutTransition, flipTransition,
@@ -7,7 +8,7 @@ import {
   lightspeedInTransition, lightspeedOutTransition, pulseTransition, rollTransition, rotateInTransition, rotateOutTransition,
   rubberBandTransition, shakeTransition, slideInTransition, slideOutTransition, swingTransition, tadaTransition,
   wobbleTransition, zoomInTransition, zoomOutTransition
-} from "../animations";
+} from "../../../ngxa";
 
 export function animations(config?: Partial<AnimationConfig>): AnimationTriggerMetadata{
   return buildTrigger(

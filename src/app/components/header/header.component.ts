@@ -2,7 +2,7 @@ import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router } from "@angular/router";
 import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
-import {zoomIn, bounceIn, listAnimateChild, lightspeedIn, rotateIn} from "../../animations";
+import {zoomIn, bounceIn, listAnimateChild, lightspeedIn, rotateIn} from "../../../../ngxa";
 
 @Component({
   selector: 'app-header',

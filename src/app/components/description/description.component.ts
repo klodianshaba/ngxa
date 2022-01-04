@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {heartBeat, swing, backIn, zoomIn, bounceIn, listAnimateChild} from "../../animations";
+import {heartBeat, swing, backIn, zoomIn, bounceIn, listAnimateChild} from "../../../../ngxa";
 
 @Component({
   selector: 'app-description',
