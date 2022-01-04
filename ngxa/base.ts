@@ -14,7 +14,7 @@ export function buildTransition( animationReferenceMetadata: AnimationReferenceM
       includeStateChangeExpressions(config.stateChangeExpressions),
       includeNestedAnimations( animationReferenceMetadata, config),
       includeOptions(config, options)
-      )
+  )
 }
 
 export function includeOptions(config: AnimationConfig, options?: AnimationOptions | null): AnimationOptions | null{

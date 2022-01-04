@@ -27,7 +27,7 @@ export const bounceTransition = (animationConfig?: Partial<AnimationConfig>, ani
 export function bounce(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || 'bounce' ,
+      triggerName: (config && config.triggerName) || 'bounce',
       transitions: bounceTransition(config)
     }
   )

@@ -4,6 +4,29 @@ import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
 import {zoomIn, bounceIn, listAnimateChild, lightspeedIn, rotateIn} from "../../../../ngxa";
 
+import {AnimationConfig} from "../../../../ngxa/common";
+import {animate, animation, AnimationTriggerMetadata, keyframes, style} from "@angular/animations";
+import {buildTrigger} from "../../../../ngxa/base";
+export const fadeAnimation = (animationConfig?: Partial<AnimationConfig>): AnimationTriggerMetadata => {
+  return buildTrigger({
+    triggerName: (animationConfig && animationConfig.triggerName) || 'fade',
+    transitions: {
+      animationReferenceMetadata:
+        animation(
+          animate(
+            '{{timings}}',
+            keyframes([
+              style({opacity: 0, offset: 0}),
+              style({opacity: 1, offset: 1}),
+            ])
+          )
+        ),
+      animationConfig,
+      animationOptions: {params: {timings: '500ms'}}
+    }
+  });
+};
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -19,6 +42,7 @@ import {zoomIn, bounceIn, listAnimateChild, lightspeedIn, rotateIn} from "../../
     rotateIn({direction:'DownLeft'}),
     rotateIn({direction:'DownRight'}),
     listAnimateChild(),
+    fadeAnimation({timings:'0.3s', stateChangeExpressions: [':enter', '0 => 1'], triggerName: 'fadeAnimation'} ) // use fadeAnimation and overwrite optional configs
   ]
 })
 export class HeaderComponent implements OnInit {

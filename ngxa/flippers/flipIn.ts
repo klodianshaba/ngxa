@@ -13,12 +13,12 @@ interface FlipInConfig extends AnimationConfig{
 
 const flipInDirectionKeyframes = (direction: FlipInAnimationDirection): AnimationStyleMetadata[] => [
   style({transform: 'perspective(400px) ' + flipInDirectionRotate(0, direction),
-    opacity: 0, easing: 'ease-in', 'backface-visibility': 'visible !important', offset: 0
+    opacity: 0, easing: 'ease-in', 'backface-visibility': 'visible', offset: 0
   }),
-  style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.4, direction), opacity: 0.5, easing: 'ease-in', 'backface-visibility': 'visible !important', offset: 0.4 }),
-  style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.6, direction), opacity: 1, 'backface-visibility': 'visible !important', offset: 0.6 }),
-  style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.8, direction),'backface-visibility': 'visible !important', offset: 0.8 }),
-  style({ transform: 'perspective(400px)', 'backface-visibility': 'visible !important', offset: 1 })
+  style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.4, direction), opacity: 0.5, easing: 'ease-in', 'backface-visibility': 'visible', offset: 0.4 }),
+  style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.6, direction), opacity: 1, 'backface-visibility': 'visible', offset: 0.6 }),
+  style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.8, direction),'backface-visibility': 'visible', offset: 0.8 }),
+  style({ transform: 'perspective(400px)', 'backface-visibility': 'visible', offset: 1 })
 ];
 
 function flipInDirectionRotate(offset: 0 | 0.4 | 0.6 | 0.8 ,direction: FlipInAnimationDirection): string{

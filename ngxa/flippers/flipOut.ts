@@ -12,9 +12,9 @@ interface FlipOutConfig extends AnimationConfig{
 }
 
 const flipOutDirectionKeyframes = (direction: FlipOutAnimationDirection): AnimationStyleMetadata[] => [
-  style({ transform: 'perspective(400px)', 'backface-visibility': 'visible !important', offset: 0}),
-  style({ opacity: 1, transform: 'perspective(400px) ' + flipOutDirectionRotate(0.3, direction), 'backface-visibility': 'visible !important', offset: 0.3 }),
-  style({ opacity: 0, transform: 'perspective(400px) ' + flipOutDirectionRotate(1, direction), 'backface-visibility': 'visible !important', offset: 1 })
+  style({ transform: 'perspective(400px)', 'backface-visibility': 'visible', offset: 0}),
+  style({ opacity: 1, transform: 'perspective(400px) ' + flipOutDirectionRotate(0.3, direction), 'backface-visibility': 'visible', offset: 0.3 }),
+  style({ opacity: 0, transform: 'perspective(400px) ' + flipOutDirectionRotate(1, direction), 'backface-visibility': 'visible', offset: 1 })
 ];
 
 function flipOutDirectionRotate(offset: 1 | 0.3 ,direction: FlipOutAnimationDirection): string{
