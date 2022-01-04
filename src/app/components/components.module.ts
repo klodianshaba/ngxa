@@ -6,7 +6,6 @@ import { SidebarComponent} from "./sidebar/sidebar.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { MaterialModule } from "../shared/material/material.module";
 import { DescriptionComponent } from './description/description.component';
-import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { CardComponent } from './card/card.component';
     SidebarComponent,
     NotFoundComponent,
     DescriptionComponent,
-    CardComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +25,6 @@ import { CardComponent } from './card/card.component';
         SidebarComponent,
         NotFoundComponent,
         DescriptionComponent,
-        CardComponent
     ]
 })
 export class ComponentsModule { }

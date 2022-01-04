@@ -2,11 +2,7 @@ import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router } from "@angular/router";
 import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
-import {zoomIn} from "../../animations/zooming-entrances";
-import {bounceIn} from "../../animations/bouncing-entrances";
-import {listAnimateChild} from "../../animations/list";
-import {lightspeedIn} from "../../animations/lightspeed";
-import {rotateIn} from "../../animations/rotating-entrances";
+import {zoomIn, bounceIn, listAnimateChild, lightspeedIn, rotateIn} from "../../animations";
 
 @Component({
   selector: 'app-header',

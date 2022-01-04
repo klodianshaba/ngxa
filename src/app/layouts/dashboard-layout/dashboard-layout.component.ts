@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Layouts } from "../../models";
-import {zoomIn} from "../../animations/zooming-entrances";
+import {zoomIn} from "../../animations";
 
 @Component({
   selector: 'app-dashboard-layout',

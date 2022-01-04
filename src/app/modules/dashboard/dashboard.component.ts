@@ -1,11 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {AnimationGroupModel, AnimationGroups, AnimationModel,animations} from "../../models";
+import {AnimationGroupModel, AnimationModel} from "../../models";
 import {ActivatedRoute, Router} from "@angular/router";
-import {heartBeat, swing} from "../../animations/attention-seekers";
-import {backIn} from "../../animations/back-entrances";
-import {zoomIn} from "../../animations/zooming-entrances";
-import {bounceIn} from "../../animations/bouncing-entrances";
-import {listAnimateChild} from "../../animations/list";
+import {animations, AnimationGroups} from '../../config'
+import {heartBeat, swing, backIn, zoomIn, bounceIn, listAnimateChild} from "../../animations";
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

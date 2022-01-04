@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {heartBeat, swing} from "../../animations/attention-seekers";
-import {backIn} from "../../animations/back-entrances/";
-import {zoomIn} from "../../animations/zooming-entrances";
-import {bounceIn} from "../../animations/bouncing-entrances";
-import {listAnimateChild} from "../../animations/list";
+import {heartBeat, swing, backIn, zoomIn, bounceIn, listAnimateChild} from "../../animations";
 
 @Component({
   selector: 'app-description',

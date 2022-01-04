@@ -1,9 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {AnimationGroupModel, AnimationModel, AnimationGroups, animations} from "../../models";
+import {AnimationGroupModel, AnimationModel} from "../../models";
+import {animations, AnimationGroups } from '../../config'
 import {Router} from "@angular/router";
-import {zoomIn} from "../../animations/zooming-entrances";
-import {bounceIn} from "../../animations/bouncing-entrances";
-import {listAnimateChild} from "../../animations/list";
+import {zoomIn, bounceIn, listAnimateChild} from "../../animations";
 
 @Component({
   selector: 'app-sidebar',
