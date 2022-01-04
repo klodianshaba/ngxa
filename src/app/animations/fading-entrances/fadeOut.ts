@@ -50,7 +50,7 @@ const fadeOutAnimation = (direction: FadeOutAnimationDirection): AnimationRefere
 );
 
 export const fadeOutTransition = (animationConfig?: Partial<FadeOutConfig>, animationOptions: AnimationOptions | null = null): TransitionConfig => {
-  const configs = { ...DefaultFadeOutConfig, ...animationConfig};
+  const configs: FadeOutConfig = { ...DefaultFadeOutConfig, ...animationConfig};
   return {
     animationReferenceMetadata: fadeOutAnimation(configs.direction),
     animationConfig,

@@ -24,6 +24,7 @@ import {fadeInTransition} from "../animations/fading-entrances/fadeIn";
 import {fadeOutTransition} from "../animations/fading-entrances/fadeOut";
 import {flipTransition} from "../animations/flippers/flip";
 import {flipInTransition} from "../animations/flippers/flipIn";
+import {flipOutTransition} from "../animations/flippers/flipOut";
 
 export interface AnimationModel{
   triggerName:string,
@@ -118,6 +119,8 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'flip', value: 'flip' ,params:{}, canAnimate: false,active: false},
       {triggerName:'flipInX', value: 'flipInX' ,params:{}, canAnimate: false,active: false},
       {triggerName:'flipInY', value: 'flipInY' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'flipOutX', value: 'flipOutX' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'flipOutY', value: 'flipOutY' ,params:{}, canAnimate: false,active: false},
     ]
   },
   { id:9, name: 'Lightspeed',
@@ -314,6 +317,8 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         flipTransition({stateChangeExpressions:'* => flip'}),
         flipInTransition({stateChangeExpressions:'* => flipInX', direction:'X'}),
         flipInTransition({stateChangeExpressions:'* => flipInY', direction:'Y'}),
+        flipOutTransition({stateChangeExpressions:'* => flipOutX', direction:'X' }),
+        flipOutTransition({stateChangeExpressions:'* => flipOutY', direction:'Y' }),
       ]
     }
   );

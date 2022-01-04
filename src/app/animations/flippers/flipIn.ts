@@ -1,5 +1,4 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata, AnimationReferenceMetadata} from "@angular/animations";
-
 import {buildTrigger, AnimationConfig, AnimationDirection, AnimationDirections, TransitionConfig, DefaultAnimationConfig, overwriteDefaultAnimationOptions} from "../wrapper";
 
 type FlipInAnimationDirection = Extract<AnimationDirection, 'X' | 'Y'>;
@@ -12,7 +11,7 @@ interface FlipInConfig extends AnimationConfig{
 }
 
 const flipInDirectionKeyframes = (direction: FlipInAnimationDirection): AnimationStyleMetadata[] => [
-  style({transform: 'perspective(400px) ' + flipInDirectionRotate(0, direction) ,
+  style({transform: 'perspective(400px) ' + flipInDirectionRotate(0, direction),
     opacity: 0, easing: 'ease-in', 'backface-visibility': 'visible !important', offset: 0
   }),
   style({ transform: 'perspective(400px) ' + flipInDirectionRotate(0.4, direction), opacity: 0.5, easing: 'ease-in', 'backface-visibility': 'visible !important', offset: 0.4 }),
@@ -35,9 +34,7 @@ function flipInDirectionRotate(offset: 0 | 0.4 | 0.6 | 0.8 ,direction: FlipInAni
 }
 
 const flipInAnimation = (direction: FlipInAnimationDirection): AnimationReferenceMetadata =>  animation(
-  animate('{{timings}} {{delay}}',
-    keyframes( flipInDirectionKeyframes(direction) )
-  )
+  animate('{{timings}} {{delay}}', keyframes( flipInDirectionKeyframes(direction) ))
 );
 
 export const flipInTransition = (animationConfig?: Partial<FlipInConfig>, animationOptions: AnimationOptions | null = null): TransitionConfig => {
