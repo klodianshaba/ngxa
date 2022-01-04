@@ -1,6 +1,6 @@
 // enums
 
-import {AnimationOptions, AnimationReferenceMetadata} from "@angular/animations";
+import {AnimationOptions, AnimationReferenceMetadata, AnimationStateMetadata} from "@angular/animations";
 
 export enum NestedAnimations{
   parallel = 'parallel',
@@ -14,7 +14,7 @@ export enum StateChangeExpressions{
   onBoolean = '0 => 1',
 }
 
-export enum AnimationDirections {
+export enum AnimationDirections{
   X = 'X',
   Y = 'Y',
   In = 'In',
@@ -65,6 +65,7 @@ export interface TransitionConfig{
 export interface BuildTriggerConfig{
   triggerName: string;
   transitions: TransitionConfig | TransitionConfig[];
+  states?: AnimationStateMetadata | AnimationStateMetadata[],
 }
 
 // functions
