@@ -9,7 +9,8 @@ Demo of animations is available at [https://klodianshaba.github.io/ngxa](https:/
 ## Example 
 
 Building trigger
-```
+
+```Typescript
 import {animate, animation, AnimationTriggerMetadata, keyframes, style} from "@angular/animations";
 import {AnimationConfig} from "../../../../ngxa/common";
 import {buildTrigger} from "../../../../ngxa/base";
@@ -36,7 +37,8 @@ export const fadeAnimation = (animationConfig?: Partial<AnimationConfig>): Anima
 ```
 
 Including trigger into animations component metadata
-```
+
+```Typescript
 import {fadeAnimation} from "../../../../ngxa";
 
 @Component({
@@ -51,6 +53,7 @@ import {fadeAnimation} from "../../../../ngxa";
 ```
 
 Template 
-```
- <span [@fadeAnimation]="state">Klodian</span>
+
+```Html
+<span [@fadeAnimation]="state">Klodian</span>
 ```
