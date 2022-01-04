@@ -1,16 +1,6 @@
 import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata, AnimationReferenceMetadata} from "@angular/animations";
 
-import {
-  buildTrigger,
-  AnimationConfig,
-  AnimationDirection,
-  AnimationDirections,
-  isLeftOrDownDirection,
-  TransitionConfig,
-  directionTranslate3d,
-  DefaultAnimationConfig,
-  overwriteDefaultAnimationOptions
-} from "../wrapper";
+import {buildTrigger, AnimationConfig, AnimationDirection, AnimationDirections, isLeftOrDownDirection, TransitionConfig, directionTranslate3d, DefaultAnimationConfig, overwriteDefaultAnimationOptions} from "../wrapper";
 
 type BounceInAnimationDirection = Extract<AnimationDirection, 'In' | 'Down' | 'Up' |'Left' | 'Right'>;
 

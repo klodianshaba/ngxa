@@ -20,6 +20,7 @@ import {lightspeedOutTransition} from "../animations/lightspeed";
 import {hingeTransition} from "../animations/specials/hinge";
 import {jackInTheBoxTransition} from "../animations/specials/jackInTheBox";
 import {rollTransition} from "../animations/specials/roll";
+import {fadeInTransition} from "../animations/fading-entrances/fadeIn";
 
 export interface AnimationModel{
   triggerName:string,
@@ -83,7 +84,19 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'bounceOutRight', value: 'bounceOutRight' ,params:{}, canAnimate: false,active: false},
     ]
   },
-  { id:6, name: 'Fading entrances', animations: [] },
+  { id:6, name: 'Fading entrances',
+    animations: [
+      {triggerName:'fadeIn', value: 'fadeIn' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInLeft', value: 'fadeInLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInRight', value: 'fadeInRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInDown', value: 'fadeInDown' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInUp', value: 'fadeInUp' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInTopLeft', value: 'fadeInTopLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInTopRight', value: 'fadeInTopRight' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInBottomLeft', value: 'fadeInBottomLeft' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'fadeInBottomRight', value: 'fadeInBottomRight' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   { id:7, name: 'Fading exits', animations: [] },
   { id:8, name: 'Flippers', animations: [] },
   { id:9, name: 'Lightspeed',
@@ -253,6 +266,17 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         jackInTheBoxTransition({stateChangeExpressions:'* => jackInTheBox', timings: '1s'}),
         rollTransition({stateChangeExpressions:'* => rollIn', direction: 'In',translate:'500px', degrees:320}),
         rollTransition({stateChangeExpressions:'* => rollOut', direction:'Out',translate:'500px', degrees:320}),
+
+        // fade In transition with different directions
+        fadeInTransition({stateChangeExpressions:'* => fadeIn'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInLeft', direction:'Left'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInRight', direction:'Right'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInDown', direction:'Down'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInUp', direction:'Up'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInTopLeft', direction:'TopLeft'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInTopRight', direction:'TopRight'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInBottomLeft', direction:'BottomLeft'}),
+        fadeInTransition({stateChangeExpressions:'* => fadeInBottomRight', direction:'BottomRight'}),
       ]
     }
   );
