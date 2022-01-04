@@ -22,6 +22,8 @@ import {jackInTheBoxTransition} from "../animations/specials/jackInTheBox";
 import {rollTransition} from "../animations/specials/roll";
 import {fadeInTransition} from "../animations/fading-entrances/fadeIn";
 import {fadeOutTransition} from "../animations/fading-entrances/fadeOut";
+import {flipTransition} from "../animations/flippers/flip";
+import {flipInTransition} from "../animations/flippers/flipIn";
 
 export interface AnimationModel{
   triggerName:string,
@@ -111,7 +113,13 @@ export const AnimationGroups: AnimationGroupModel[] = [
       {triggerName:'fadeOutBottomRight', value: 'fadeOutBottomRight' ,params:{}, canAnimate: false,active: false},
     ]
   },
-  { id:8, name: 'Flippers', animations: [] },
+  { id:8, name: 'Flippers',
+    animations: [
+      {triggerName:'flip', value: 'flip' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'flipInX', value: 'flipInX' ,params:{}, canAnimate: false,active: false},
+      {triggerName:'flipInY', value: 'flipInY' ,params:{}, canAnimate: false,active: false},
+    ]
+  },
   { id:9, name: 'Lightspeed',
     animations: [
       {triggerName:'lightspeedInLeft', value: 'lightspeedInLeft' ,params:{}, canAnimate: false,active: false},
@@ -291,7 +299,6 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         fadeInTransition({stateChangeExpressions:'* => fadeInBottomLeft', direction:'BottomLeft'}),
         fadeInTransition({stateChangeExpressions:'* => fadeInBottomRight', direction:'BottomRight'}),
 
-        // fade Out transition with different directions
         // fade In transition with different directions
         fadeOutTransition({stateChangeExpressions:'* => fadeOut'}),
         fadeOutTransition({stateChangeExpressions:'* => fadeOutLeft', direction:'Left'}),
@@ -302,6 +309,11 @@ export function animations(config?: Partial<AnimationConfig>): AnimationTriggerM
         fadeOutTransition({stateChangeExpressions:'* => fadeOutTopRight', direction:'TopRight'}),
         fadeOutTransition({stateChangeExpressions:'* => fadeOutBottomLeft', direction:'BottomLeft'}),
         fadeOutTransition({stateChangeExpressions:'* => fadeOutBottomRight', direction:'BottomRight'}),
+
+        //flip
+        flipTransition({stateChangeExpressions:'* => flip'}),
+        flipInTransition({stateChangeExpressions:'* => flipInX', direction:'X'}),
+        flipInTransition({stateChangeExpressions:'* => flipInY', direction:'Y'}),
       ]
     }
   );
