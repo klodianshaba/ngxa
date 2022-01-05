@@ -3,6 +3,7 @@
 This wrapper helps to implement animations easy in angular application\
 Easy Builder, Dynamically, Reusable And Different Direction On Single Base Code\
 Implements all animations based in [Animate.css](https://animate.style/) with the power of [Angular animations](https://angular.io/guide/animations)  
+Reusing style functions with different configurations and direction
 
 ## Demo
 
