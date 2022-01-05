@@ -2,22 +2,15 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AnimationGroupModel, AnimationModel} from "../../models";
 import {ActivatedRoute, Router} from "@angular/router";
 import {animations, AnimationGroups} from '../../config'
-import {heartBeat, swing, backIn, zoomIn, bounceIn, staggerNestedAnimations} from "../../../../ngxa";
+import {bounceIn} from "../../../../ngxa";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   animations: [
-    zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
-    bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
     bounceIn({stateChangeExpressions:':enter', direction:'Down', translate:'300px', timings:'1000ms'}),
     bounceIn({stateChangeExpressions:':enter', direction:'Up', translate:'300px', timings:'1000ms'}),
-    swing({stateChangeExpressions:':enter'}),
-    staggerNestedAnimations({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
-    heartBeat({stateChangeExpressions:':enter, 0 => 1'}),
-    swing({stateChangeExpressions:':enter, 0 => 1', timings:'1000ms'}),
-    backIn({stateChangeExpressions:':enter, 0 => 1', direction:'Down', translate:'300px'}),
     animations(),
  ]
 })

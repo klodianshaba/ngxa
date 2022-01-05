@@ -1,7 +1,7 @@
 import {AnimationOptions} from "@angular/animations";
 
 export interface AnimationModel{
-  triggerName:string,
+  triggerName: string,
   value: string | number | boolean,
   params: AnimationOptions | null,
   canAnimate: boolean,

@@ -2,18 +2,15 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AnimationGroupModel, AnimationModel} from "../../models";
 import {animations, AnimationGroups } from '../../config'
 import {Router} from "@angular/router";
-import {zoomIn, bounceIn, staggerNestedAnimations} from "../../../../ngxa";
+import {bounceIn} from "../../../../ngxa";
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   animations: [
-    zoomIn(),
-    bounceIn({stateChangeExpressions: [':enter', '0 => 1']}), // bounceIn trigger
-    bounceIn({stateChangeExpressions: [':enter', '0 => 1'], direction:'Left', translate:'100px'}), // bounceInLeft trigger
+    bounceIn({stateChangeExpressions: [':enter', '0 => 1'], direction:'Left', translate:'100px'}),
     animations(),
-    staggerNestedAnimations({timings:'100ms', stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
@@ -28,7 +25,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     const el =  document.getElementById("active-animation");
     el?.parentElement?.scrollIntoView({behavior:'smooth'});
   }
-
 
   onClick(groupIndex: number, animation: AnimationModel): void{
     this.onAnimateIt(groupIndex,animation);
@@ -53,5 +49,4 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   // onLeave(groupIndex: number, animation: AnimationModel): void {
   //    animation.canAnimate = false;
   // }
-
 }
