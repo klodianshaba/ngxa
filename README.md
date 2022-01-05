@@ -269,7 +269,6 @@ export class DescriptionComponent{
 ```
 ## Running Demo
 ```
-git clone https://github.com/klodianshaba/ngxa.git
 npm install
 npm start
 ```
