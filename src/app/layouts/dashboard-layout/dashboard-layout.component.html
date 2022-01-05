@@ -1,7 +1,7 @@
 
 <app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
 <mat-sidenav-container class="" autosize >
-  <mat-sidenav #drawer class="sidenav custom-scrollbar" mode="side" opened>
+  <mat-sidenav #drawer class="sidenav custom-scrollbar" [mode]="isSmallScreen ? 'over' : 'side'" [opened]="!isSmallScreen">
     <app-sidebar></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content class="custom-scrollbar sidenav-content">

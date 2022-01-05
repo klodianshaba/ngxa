@@ -7,6 +7,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatRippleModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {LayoutModule} from '@angular/cdk/layout';
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +18,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSidenavModule,
     MatRippleModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    LayoutModule
   ],
   exports: [
     MatToolbarModule,
@@ -26,8 +28,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSidenavModule,
     MatRippleModule,
     MatCardModule,
-    MatGridListModule
-
+    MatGridListModule,
+    LayoutModule
   ]
 })
 export class MaterialModule { }
