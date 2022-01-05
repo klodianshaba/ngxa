@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AnimationGroupModel, AnimationModel} from "../../models";
 import {animations, AnimationGroups } from '../../config'
 import {Router} from "@angular/router";
-import {zoomIn, bounceIn, listAnimateChild} from "../../../../ngxa";
+import {zoomIn, bounceIn, staggerNestedAnimations} from "../../../../ngxa";
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +13,7 @@ import {zoomIn, bounceIn, listAnimateChild} from "../../../../ngxa";
     bounceIn({stateChangeExpressions: [':enter', '0 => 1']}), // bounceIn trigger
     bounceIn({stateChangeExpressions: [':enter', '0 => 1'], direction:'Left', translate:'100px'}), // bounceInLeft trigger
     animations(),
-    listAnimateChild({timings:'100ms', stateChangeExpressions:':enter, 0 => 1'}),
+    staggerNestedAnimations({timings:'100ms', stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
 export class SidebarComponent implements OnInit, AfterViewInit {

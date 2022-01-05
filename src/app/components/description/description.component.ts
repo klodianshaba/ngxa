@@ -1,33 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import {heartBeat, swing, backIn, zoomIn, bounceIn, listAnimateChild} from "../../../../ngxa";
+import {swing, zoomIn, staggerNestedAnimations} from "../../../../ngxa";
 
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss'],
   animations: [
-    zoomIn({stateChangeExpressions:':enter, 0 => 1'}),
     zoomIn({stateChangeExpressions:':enter, 0 => 1', timings:'1s', direction: 'Down'}),
-    bounceIn({stateChangeExpressions:':enter, 0 => 1'}),
     swing({stateChangeExpressions:':enter, 0 => 1'}),
-    listAnimateChild({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
-    heartBeat({stateChangeExpressions:':enter, 0 => 1'}),
-    swing({stateChangeExpressions:':enter, 0 => 1'}),
-    backIn({stateChangeExpressions:':enter, 0 => 1', direction:'Down', translate:'200px'}),
+    staggerNestedAnimations({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
 export class DescriptionComponent implements OnInit {
-
   status: boolean = true;
   constructor() { }
-
   ngOnInit(): void {}
-
-  animate() {
+  onAnimateIt() {
     this.status = false;
     setTimeout(() => {
       this.status = true;
     }, 1);
   }
-
 }

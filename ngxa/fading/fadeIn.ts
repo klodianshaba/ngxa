@@ -1,4 +1,14 @@
-import {animate, keyframes, style, AnimationTriggerMetadata, animation, AnimationOptions, AnimationStyleMetadata, AnimationReferenceMetadata} from "@angular/animations";
+import {
+  animate,
+  keyframes,
+  style,
+  AnimationTriggerMetadata,
+  animation,
+  AnimationOptions,
+  AnimationStyleMetadata,
+  AnimationReferenceMetadata,
+  AnimationKeyframesSequenceMetadata
+} from "@angular/animations";
 import {AnimationConfig, AnimationDirection, AnimationDirections, TransitionConfig, DefaultAnimationConfig, overwriteDefaultAnimationOptions} from "../common";
 import {buildTrigger} from '../base';
 type FadeInAnimationDirection = Extract<AnimationDirection, 'In' | 'Down' | 'Up' |'Left' | 'Right' | 'TopLeft' | 'TopRight' | 'BottomLeft' | 'BottomRight'>;

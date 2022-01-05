@@ -2,10 +2,10 @@ import {animate, animateChild, animation, AnimationTriggerMetadata, group, keyfr
 import {AnimationConfig} from "../common";
 import {buildTrigger} from "../base";
 
-export function listAnimateChild(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
+export function staggerNestedAnimations(config?: Partial<AnimationConfig>): AnimationTriggerMetadata {
   return buildTrigger(
     {
-      triggerName: (config && config.triggerName) || 'listAnimationChild',
+      triggerName: (config && config.triggerName) || 'staggerNestedAnimations',
       transitions: {
         animationReferenceMetadata: animation(group([
           query('@*', [
@@ -20,7 +20,7 @@ export function listAnimateChild(config?: Partial<AnimationConfig>): AnimationTr
           )
           ])
         ),
-        animationConfig: {...{triggerName: (config && config.triggerName) || 'listAnimationChild', stateChangeExpressions: '* => *'},...config}
+        animationConfig: {...{triggerName: (config && config.triggerName) || 'staggerNestedAnimations', stateChangeExpressions: '* => *'},...config}
       }
     }
   )

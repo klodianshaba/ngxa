@@ -2,7 +2,7 @@ import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router } from "@angular/router";
 import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
-import {zoomIn, bounceIn, listAnimateChild, lightspeedIn, rotateIn} from "../../../../ngxa";
+import {zoomIn, bounceIn, staggerNestedAnimations, lightspeedIn, rotateIn} from "../../../../ngxa";
 
 import {AnimationConfig} from "../../../../ngxa/common";
 import {animate, animation, AnimationTriggerMetadata, keyframes, style} from "@angular/animations";
@@ -33,15 +33,14 @@ export const fadeAnimation = (animationConfig?: Partial<AnimationConfig>): Anima
   styleUrls: ['./header.component.scss'],
   animations:[
     zoomIn(),
-    zoomIn({direction:'Left', translate:'200px'}),
-    bounceIn({timings:'1000ms'}),
+    bounceIn({timings: '1000ms'}),
     bounceIn({direction:'Left', timings:'1s',translate:'500px'}),
     bounceIn({direction:'Right', timings:'1s',translate:'500px'}),
     lightspeedIn({direction:'Left',translate:'100px'}),
     lightspeedIn({direction:'Right' ,translate:'100px'}),
     rotateIn({direction:'DownLeft'}),
     rotateIn({direction:'DownRight'}),
-    listAnimateChild(),
+    staggerNestedAnimations(),
     fadeAnimation({timings:'0.3s', stateChangeExpressions: [':enter', '0 => 1'], triggerName: 'fadeAnimation'} ) // use fadeAnimation and overwrite optional configs
   ]
 })
@@ -51,11 +50,8 @@ export class HeaderComponent implements OnInit {
  @Output() onToggleSideBar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(public layoutService: LayoutService, private router: Router) {}
-
   ngOnInit(): void {}
-
   onClickSideBar(): void {
     this.onToggleSideBar.next(true);
   }
-
 }

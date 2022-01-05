@@ -2,12 +2,13 @@ import {AnimationTriggerMetadata} from "@angular/animations";
 import {AnimationConfig} from "../../../ngxa/common";
 import {buildTrigger} from "../../../ngxa/base";
 import {
-  backInTransition, backOutTransition, bounceInTransition, bounceOutTransition, bounceTransition,
-  fadeInTransition, fadeOutTransition, flashTransition, flipInTransition, flipOutTransition, flipTransition,
-  headShakeTransition, heartBeatTransition, hingeTransition, jackInTheBoxTransition, jelloTransition,
-  lightspeedInTransition, lightspeedOutTransition, pulseTransition, rollTransition, rotateInTransition, rotateOutTransition,
-  rubberBandTransition, shakeTransition, slideInTransition, slideOutTransition, swingTransition, tadaTransition,
-  wobbleTransition, zoomInTransition, zoomOutTransition
+  bounceTransition, flashTransition, pulseTransition, rubberBandTransition, shakeTransition, headShakeTransition,
+  swingTransition, tadaTransition, wobbleTransition, jelloTransition, heartBeatTransition,
+  backInTransition, backOutTransition, bounceInTransition, bounceOutTransition,
+  fadeInTransition, fadeOutTransition, flipInTransition, flipOutTransition, flipTransition,
+  lightspeedInTransition, lightspeedOutTransition, rotateInTransition, rotateOutTransition,
+  hingeTransition, jackInTheBoxTransition, rollTransition, zoomInTransition, zoomOutTransition,
+  slideInTransition, slideOutTransition,
 } from "../../../ngxa";
 
 export function animations(config?: Partial<AnimationConfig>): AnimationTriggerMetadata{

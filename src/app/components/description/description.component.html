@@ -1,13 +1,15 @@
 
-<div class="description-container d-flex flex-column align-items-center justify-content-center" [@listAnimationChild]="status">
+<div class="description-container d-flex flex-column align-items-center justify-content-center" [@staggerNestedAnimations]="status">
   <div [@zoomInDown]="status">
-    <span class="fs-1 fw-bold" >Angular Animations Wrapper</span>
+    <span class="fs-1 fw-bold">Angular Animations Wrapper</span>
   </div>
   <div class="pt-5 pb-5" [@zoomInDown]="status">
-    <div class="easy-builder" [@swing]="{value:status, params:{timings:'1500ms'}}">Easy Builder, Dynamically, Reusable And Different Direction On Single Base Code</div>
+    <div class="easy-builder" [@swing]="{value:status, params:{timings:'1500ms'}}">
+      <span>Easy Builder, Dynamically, Reusable And Different Direction On Single Base Code</span>
+    </div>
     <span class="fs-5">This wrapper helps you to implement animations easy in your angular application</span>
   </div>
-  <button [@zoomInDown]="status" (click)="animate()" color="primary" mat-raised-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <button [@zoomInDown]="status" (click)="onAnimateIt()" color="primary" mat-raised-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     Animate It
   </button>
 </div>
