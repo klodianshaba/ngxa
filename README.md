@@ -1,13 +1,13 @@
 # NGXA
 
-This wrapper helps to implement animations easy in angular application\
-Easy Builder, Dynamically, Reusable And Different Direction On Single Base Code\
-Implements all animations based in [Animate.css](https://animate.style/) with the power of [Angular animations](https://angular.io/guide/animations)  
-Reusing style functions with different configurations and direction
+Ngxa wrapper helps to implement animations easy in angular application\
+Easy builder, Dynamically, Reusable\
+Implements all animations in [Animate.css](https://animate.style/) based on [Angular Animations](https://angular.io/guide/animations)  with the power of NGXA wrapper\
+Reusing single style code functions with different configurations and direction
 
 ## Demo
 
-Demo of animations is available at [https://klodianshaba.github.io/ngxa](https://klodianshaba.github.io/ngxa)
+Demo of NGXA is available at [https://klodianshaba.github.io/ngxa](https://klodianshaba.github.io/ngxa)
 
 ## Example 
 
