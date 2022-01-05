@@ -27,6 +27,8 @@ const fadeInDirectionKeyframes = (direction: FadeInAnimationDirection): Animatio
 
 function fadeInDirectionTranslate(direction: FadeInAnimationDirection): string{
   switch (direction) {
+    case "In":
+      return 'translate3d(0,0,0)';
     case "Left":
       return 'translate3d(-{{translate}},0,0)';
     case "Right":
@@ -43,8 +45,6 @@ function fadeInDirectionTranslate(direction: FadeInAnimationDirection): string{
       return 'translate3d(-{{translate}},{{translate}},0)';
     case "BottomRight":
       return 'translate3d({{translate}},{{translate}},0)';
-    default:
-      return '0';
   }
 }
 

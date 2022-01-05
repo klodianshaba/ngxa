@@ -26,7 +26,7 @@ export * from './flippers/flipOut';
 export * from './lightspeed/lightspeedIn';
 export * from './lightspeed/lightspeedOut';
 
-export * from './list/list';
+export * from './staggerNestedAnimations/staggerNestedAnimations';
 
 export * from './rotating/rotateIn';
 export * from './rotating/rotateOut';

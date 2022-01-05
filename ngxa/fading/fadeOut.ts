@@ -18,6 +18,8 @@ const fadeOutDirectionKeyframes = (direction: FadeOutAnimationDirection): Animat
 
 function fadeOutDirectionTranslate(direction: FadeOutAnimationDirection): string{
   switch (direction) {
+    case "Out":
+      return 'translate3d(0,0,0)';
     case "Left":
       return 'translate3d(-{{translate}},0,0)';
     case "Right":
@@ -34,8 +36,6 @@ function fadeOutDirectionTranslate(direction: FadeOutAnimationDirection): string
       return 'translate3d(-{{translate}},{{translate}},0)';
     case "BottomRight":
       return 'translate3d({{translate}},{{translate}},0)';
-    default:
-      return '0';
   }
 }
 
