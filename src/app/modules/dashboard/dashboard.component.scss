@@ -1,7 +1,13 @@
 @import "src/app/scss/variables";
-
 .dashboard{
  height: 100%;
+  .animation-name{
+    color: var(--ngxa-color-white);
+  }
+  button{
+    background: var(--ngxa-background);
+    color: var(--ngxa-color-white);
+  }
 }
 .header-image {
   background-size: cover;
@@ -12,9 +18,16 @@
 }
 
 .angular-logo{
-  margin: map-get($space, margin);
   img{
-    transition: 0.3s;
-    width: 200px;
+    width: calc(100vh - 400px);
+  }
+}
+
+@media (max-width: 540px){
+  /* CSS stuff */
+  .angular-logo{
+    img{
+      width: 100%;
+    }
   }
 }

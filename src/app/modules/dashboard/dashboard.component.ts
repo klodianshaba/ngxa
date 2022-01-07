@@ -17,8 +17,7 @@ import {bounceIn} from "../../../../ngxa";
 export class DashboardComponent implements OnInit {
 
   public groups: AnimationGroupModel[] = AnimationGroups;
-
-  public animation: AnimationModel | undefined = this.findAnimation('zoomInDown');
+  public animation: AnimationModel | undefined = this.findAnimation('rollIn');
 
   constructor(private cdf: ChangeDetectorRef, private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -26,11 +25,18 @@ export class DashboardComponent implements OnInit {
         this.animation = this.findAnimation(params['animation']);
         if(this.animation){
           this.onAnimateCard(this.animation);
+          this.checkActiveAnimation();
+        }else{
+          this.animation = this.findAnimation('rollIn');
+          if (this.animation){
+            this.onAnimateCard(this.animation);
+          }
         }
       }else{
-        this.router.navigate(['dashboard'], {queryParams: {animation: this.animation?.triggerName}}).then();
+        if (this.animation){
+          this.onAnimateCard(this.animation);
+        }
       }
-      this.checkActiveAnimation();
     });
   }
 
@@ -57,10 +63,6 @@ export class DashboardComponent implements OnInit {
         }
       }, 1);
     }
-  }
-
-  onViewIt(animation: AnimationModel): void{
-    this.router.navigate(['dashboard'],{queryParams:{animation:animation.triggerName}}).then();
   }
 
   checkActiveAnimation(): void{

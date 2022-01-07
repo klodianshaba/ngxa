@@ -1,12 +1,12 @@
 
 <div class="dashboard d-flex flex-column align-items-center justify-content-center ">
   <div class="d-flex flex-column align-items-center justify-content-center" *ngIf="this.animation">
-    <div class="fs-3 fw-bold" [@bounceInDown] >{{animation.triggerName}}</div>
+    <div class="fs-3 fw-bold animation-name pb-4" [@bounceInDown] >{{animation.triggerName}}</div>
     <div class="angular-logo d-inline-block" [@animations]="animation">
-      <img alt="Angular Logo" src="./assets/images/angular_solidBlack.png">
+      <img alt="Angular Logo" src="./assets/images/angular.png">
     </div>
-    <div [@bounceInUp] >
-      <button (click)="onAnimateCard(animation)" color="primary" mat-raised-button>Animate It</button>
+    <div class="pt-4" [@bounceInUp] >
+      <button (click)="onAnimateCard(animation)" mat-raised-button>Animate It</button>
     </div>
   </div>
   <div class="fs-5 fw-bold" *ngIf="!this.animation">

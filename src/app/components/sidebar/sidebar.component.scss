@@ -1,5 +1,15 @@
+mat-toolbar{
+  position: fixed;
+  width: 100%;
+  z-index: 2 !important;
+  background-color: var(--ngxa-background);
+  filter: drop-shadow(0 0 10px var(--ngxa-background));
+  overflow: hidden;
+  color: var(--ngxa-color-white);
+}
+
 .sidebar-container{
-  overflow-x: hidden;
+  //overflow-x: hidden;
   .group{
     width: 100%;
     padding: 20px 10px 20px 25px;
@@ -9,17 +19,19 @@
     padding: 10px 10px 10px 25px;
     cursor: pointer;
     transition: 0.3s;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
     &:hover{
-      color: var(--ani-color-active);
-      background-color: var(--ani-background-hover);
+      color: var(--ngxa-color-active);
+      background-color: var(--ngxa-background-hover);
       :first-child{
         font-weight: bold;
       }
     }
   }
   .active{
-    color: var(--ani-color-active);
-    background-color: var(--ani-background-hover);
+    color: var(--ngxa-color-active);
+    background-color: var(--ngxa-background-hover);
     :first-child{
       font-weight: bold;
     }

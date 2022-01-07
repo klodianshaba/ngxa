@@ -3,6 +3,7 @@ import {AnimationGroupModel, AnimationModel} from "../../models";
 import {animations, AnimationGroups } from '../../config'
 import {Router} from "@angular/router";
 import {bounceIn} from "../../../../ngxa";
+import {StateService} from "../../services/state.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -16,8 +17,7 @@ import {bounceIn} from "../../../../ngxa";
 export class SidebarComponent implements OnInit, AfterViewInit {
 
   public groups: AnimationGroupModel[] = AnimationGroups;
-
-  constructor(private router: Router) { }
+  constructor(private router: Router, public state: StateService) {}
 
   ngOnInit(): void {}
 
@@ -40,13 +40,4 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       }, 1);
   }
 
-  // onHover(groupIndex: number, animation: AnimationModel): void{
-  //   if(!animation.canAnimate) {
-  //     this.onAnimateIt(groupIndex,animation);
-  //   }
-  //   animation.canAnimate = true;
-  // }
-  // onLeave(groupIndex: number, animation: AnimationModel): void {
-  //    animation.canAnimate = false;
-  // }
 }

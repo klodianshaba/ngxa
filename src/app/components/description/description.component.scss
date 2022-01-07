@@ -1,14 +1,28 @@
 
 .description-container{
-  height: 100%;
-}
-.easy-builder{
   text-align: left;
-  padding-bottom: 5px;
+  height: 100%;
+
+  .title{
+    color: var(--ngxa-color-white);
+  }
+
+  .implement-animations{
+    color: var(--ngxa-background);
+  }
+}
+button{
+  background: var(--ngxa-background);
+  color: var(--ngxa-color-white);
+  width: 200px;
 }
 @media (max-width: 1007px) {
   .easy-builder {
-    text-align: center;
   }
 }
 
+@media (max-width: 850px) {
+  .description-container{
+    text-align: center;
+  }
+}

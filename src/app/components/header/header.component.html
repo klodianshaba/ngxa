@@ -1,12 +1,14 @@
 
-<mat-toolbar color="primary">
-  <button [@bounceInLeft] (click)="onClickSideBar()" *ngIf="layoutService.isDashboard(this.layout)" mat-icon-button class="example-icon" aria-label="icon-button with menu icon">
-    <mat-icon >menu</mat-icon>
-  </button>
-  <span [@bounceInLeft]>NGXA</span>
-  <span class="spacer"></span>
-  <a [@bounceInRight] href="https://github.com/klodianshaba/angular-animations" target="_blank" mat-icon-button>
-    <img alt="GitHub Logo" src="./assets/images/GitHub-Mark-Light-32px.png">
-  </a>
+<mat-toolbar>
+  <span class="animations" *ngIf="sideNavStatus && !isSmallScreen" [@slideInLeft] [@slideOutLeft]>Animations</span>
+  <div class="ngxa-container" [ngClass]="{'opened-side-nav': sideNavStatus && !isSmallScreen }">
+    <div class="ngxa-layout d-flex justify-content-center align-items-center">
+      <button [@bounceInLeft] (click)="onClickSideBar()" *ngIf="layoutService.isDashboard(this.layout)" mat-icon-button class="example-icon" aria-label="icon-button with menu icon">
+        <mat-icon >menu</mat-icon>
+      </button>
+      <span [@bounceInLeft]>NGXA</span>
+      <span class="spacer"></span>
+    </div>
+  </div>
 </mat-toolbar>
 

@@ -1,19 +1,19 @@
-
-<app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
-<mat-sidenav-container class="" autosize >
-  <mat-sidenav #drawer class="sidenav custom-scrollbar" [mode]="isSmallScreen ? 'over' : 'side'" [opened]="!isSmallScreen">
-    <app-sidebar></app-sidebar>
-  </mat-sidenav>
-  <mat-sidenav-content class="custom-scrollbar sidenav-content">
-   <div class="animations-content d-flex flex-column align-items-center justify-content-center">
-     <div class="description-content">
-       <app-description></app-description>
-     </div>
-     <div class="animation-content">
-       <router-outlet></router-outlet>
-     </div>
-   </div>
-    <app-footer></app-footer>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
+<div class="ngxa-dashboard-container">
+  <app-header [layout]="Layouts.dashboard" (onToggleSideBar)="drawer.toggle()"></app-header>
+  <mat-sidenav-container class="" autosize >
+    <mat-sidenav #drawer class="sidenav custom-scrollbar" [ngClass]="{'sidenav-over': isSmallScreen}" [mode]="isSmallScreen ? 'over' : 'side'" [opened]="!isSmallScreen" (closedStart)="onChangeSideNav(false)" (openedStart)="onChangeSideNav(true)">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content class="custom-scrollbar sidenav-content">
+      <div class="ngxa-layout animations-content d-flex align-items-center justify-content-center" [ngClass]="{'ngxa-layout-opened-side-nav': sideNavStatus}">
+        <div class="description-content">
+          <app-description></app-description>
+        </div>
+        <div class="animation-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

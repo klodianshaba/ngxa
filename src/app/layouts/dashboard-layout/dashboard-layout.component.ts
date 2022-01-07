@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import { Layouts } from "../../models";
 import {BreakpointObserver} from '@angular/cdk/layout';
+import {StateService} from "../../services/state.service";
 @Component({
   selector: 'app-dashboard-layout',
   templateUrl: './dashboard-layout.component.html',
@@ -10,11 +11,22 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 export class DashboardLayoutComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    // event.target.innerWidth;
-    this.isSmallScreen = this.breakpointObserver.isMatched('(max-width: 1010px)');
+    this.state.isSmallScreen.next(this.breakpointObserver.isMatched('(max-width: 1200px)'));
   }
-  public isSmallScreen: boolean = this.breakpointObserver.isMatched('(max-width: 913px)');
+  public isSmallScreen: boolean = false;
   public Layouts = Layouts;
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  public sideNavStatus: boolean = false;
+  constructor(private breakpointObserver: BreakpointObserver, private state: StateService) {
+    this.state.isSmallScreen.next(this.breakpointObserver.isMatched('(max-width: 1200px)'));
+    this.state.sideNavStatus.subscribe(status => {
+      this.sideNavStatus = status;
+    });
+    this.state.isSmallScreen.subscribe(status => {
+      this.isSmallScreen = status;
+    });
+  }
   ngOnInit(): void {}
+  onChangeSideNav(status: boolean): void{
+    this.state.sideNavStatus.next(status);
+  }
 }

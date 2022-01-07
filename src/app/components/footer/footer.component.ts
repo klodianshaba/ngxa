@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StateService} from "../../services/state.service";
 
 @Component({
   selector: 'app-footer',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  constructor() { }
+  public sideNavStatus: boolean = false;
+  constructor(private state: StateService) {
+    this.state.sideNavStatus.subscribe(status => {
+      this.sideNavStatus = status;
+    });
+  }
   ngOnInit(): void {}
 }

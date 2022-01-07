@@ -1,8 +1,10 @@
 :root{
-  --ani-background: white;
-  --ani-background-hover: #f2f2f2;
-  --ani-color-border:#f2f2f2;
-  --ani-color-active:#3f51b5;
+  --ngxa-background: #DD0330;
+  --ngxa-background-hover: #DD0330;
+  --ngxa-color-border: #fd6886;
+  --ngxa-color-white: white;
+  --ngxa-color-active: white;
+  --ngxa-linear-background: linear-gradient(180.01deg, #DD0330 0.01%, #FFFFFF 90.37%), #FFFFFF;
 }
 $space:(
  margin: 15px,
@@ -14,4 +16,6 @@ $size:(
   middle:14px,
   large:16px
 );
+
+
 

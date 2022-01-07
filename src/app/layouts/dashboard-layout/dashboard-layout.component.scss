@@ -1,33 +1,56 @@
 @import "src/app/scss/variables";
 
-mat-sidenav-container{
-  background-color: var(--ani-background);
+.ngxa-dashboard-container{
+  background: var(--ngxa-linear-background);
 }
-.animations-content{
-  height: calc(100vh - 135px);
-  overflow: hidden;
-  margin: 0 map-get($space, margin);
-  text-align: center;
-  .animation-content, .description-content{
-    padding: 50px 0;
-  }
-  .description-content{
-    border-bottom: 1px solid var(--ani-color-border);
-  }
+mat-sidenav-container{
+  background-color: transparent;
 }
 .sidenav{
   width: 260px;
   border-right: none;
+  background: transparent;
+}
+.sidenav-over{
+  background: var(--ngxa-linear-background);
 }
 .sidenav-content{
   height: calc(100vh - 64px);
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-
+.animations-content{
+  height: calc(100vh - 119px);
+  text-align: center;
+  padding: 30px 30px;
+  .animation-content, .description-content{
+    //padding: 50px 50px;
+  }
+  .description-content{
+    //border-right: 1px solid var(--ngxa-color-border);
+  }
+}
 @media (max-height: 755px), (max-width: 755px ){
   /* CSS stuff */
   .animations-content{
     overflow-y: auto;
     height: auto;
+  }
+}
+
+@media (max-width: 850px){
+  .animations-content {
+    flex-direction: column;
+    height: auto;
+  }
+  .sidenav-content{
+    overflow-y: auto;
+  }
+  .animation-content, .description-content{
+    padding: 50px 0;
+  }
+  .description-content{
+    border-bottom: 1px solid var(--ngxa-color-border);
   }
 }
 

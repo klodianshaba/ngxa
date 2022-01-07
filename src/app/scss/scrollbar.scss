@@ -7,7 +7,7 @@
     background: rgba(0, 0, 0,.10);
   }
   body::-webkit-scrollbar-track, .custom-scrollbar::-webkit-scrollbar-track {
-    background-color: var(--ani-color-border);
+    background: var(--ngxa-linear-background);
   }
 
   body::-webkit-scrollbar-thumb:hover,.custom-scrollbar::-webkit-scrollbar-thumb:hover {
@@ -15,6 +15,6 @@
   }
 
   body::-webkit-scrollbar-track:hover, .custom-scrollbar::-webkit-scrollbar-track:hover{
-    background-color: var(--ani-color-border);
+    background-color: var(--ngxa-color-border);
   }
 }
