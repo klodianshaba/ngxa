@@ -2,7 +2,7 @@ import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import {Router} from "@angular/router";
 import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
-import {bounceIn, slideIn, slideOut} from "../../../../ngxa";
+import {bounceIn, slideIn, slideOut, swing} from "../../../../ngxa";
 import {StateService} from "../../services/state.service";
 
 @Component({
@@ -16,11 +16,11 @@ import {StateService} from "../../services/state.service";
   ]
 })
 export class HeaderComponent implements OnInit {
-
  @Input() layout: Layouts = Layouts.landing;
  @Output() onToggleSideBar: EventEmitter<boolean> = new EventEmitter<boolean>();
  public sideNavStatus: boolean = false;
  public isSmallScreen: boolean = false;
+ public title = 'NIMATIONS';
 
  constructor(public layoutService: LayoutService, private router: Router, public state: StateService) {
    this.state.sideNavStatus.subscribe(status => {
@@ -34,5 +34,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
   onClickSideBar(): void {
     this.onToggleSideBar.next(true);
+  }
+  onNgxa(): void{
+   this.router.navigate(['/dashboard']).then();
   }
 }

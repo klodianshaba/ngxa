@@ -3,6 +3,10 @@
   margin: auto;
   padding: 0 20px;
 }
+svg{
+  width: 50px;
+  margin-left: 20px;
+}
 
 .ngxa-container{
   width: 100%;
@@ -16,6 +20,8 @@
 .animations{
   position: absolute;
   padding-left: 25px;
+  margin-left: 40px;
+  letter-spacing: 3px;
 }
 
 mat-toolbar{
