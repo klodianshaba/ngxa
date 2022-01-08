@@ -22,7 +22,7 @@
       <button [@bounceInLeft] (click)="onClickSideBar()" *ngIf="layoutService.isDashboard(this.layout)" mat-icon-button class="example-icon" aria-label="icon-button with menu icon">
         <mat-icon >menu</mat-icon>
       </button>
-      <span [@bounceInLeft]>NGXA</span>
+      <span class="ngxa" [@bounceInLeft] (click)="onNgxa()">NGXA</span>
       <span class="spacer"></span>
     </div>
   </div>

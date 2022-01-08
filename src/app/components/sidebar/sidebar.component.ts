@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   onClick(groupIndex: number, animation: AnimationModel): void{
     this.onAnimateIt(groupIndex,animation);
-    this.router.navigate(['dashboard'],{queryParams:{animation:animation.triggerName}}).then();
+    this.router.navigate([''],{queryParams:{animation:animation.triggerName}}).then();
   }
 
   onAnimateIt(groupIndex: number,animation: AnimationModel): void{

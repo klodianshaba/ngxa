@@ -36,6 +36,6 @@ export class HeaderComponent implements OnInit {
     this.onToggleSideBar.next(true);
   }
   onNgxa(): void{
-   this.router.navigate(['/dashboard']).then();
+   this.router.navigate(['']).then();
   }
 }
