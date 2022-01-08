@@ -33,8 +33,10 @@ export class DashboardComponent implements OnInit {
           }
         }
       }else{
+        this.animation = this.findAnimation('rollIn');
         if (this.animation){
           this.onAnimateCard(this.animation);
+          this.unActiveAnimation();
         }
       }
     });
@@ -74,5 +76,8 @@ export class DashboardComponent implements OnInit {
       }
     )
   );
+  }
+  unActiveAnimation(): void{
+    this.groups.map(group => group.animations.map( item => Object.assign(item ,{active: false} )));
   }
 }

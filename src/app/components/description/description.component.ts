@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {swing, zoomIn, staggerNestedAnimations} from "../../../../ngxa";
+import {swing, zoomIn, staggerNestedAnimations, jackInTheBox, bounceIn} from "../../../../ngxa";
 
 @Component({
   selector: 'app-description',
@@ -8,6 +8,7 @@ import {swing, zoomIn, staggerNestedAnimations} from "../../../../ngxa";
   animations: [
     zoomIn({stateChangeExpressions:':enter, 0 => 1', timings:'1s', direction: 'Down'}),
     swing({stateChangeExpressions:':enter, 0 => 1'}),
+    bounceIn({ direction:'Left', stateChangeExpressions:':enter, 0 => 1',timings:'1s'}),
     staggerNestedAnimations({timings:'300ms', stateChangeExpressions:':enter, 0 => 1'}),
   ]
 })
