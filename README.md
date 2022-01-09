@@ -17,12 +17,6 @@ Demo of NGXA is available at [https://klodianshaba.github.io/ngxa](https://klodi
 npm i ngxa --save
 ```
 
-Or
-
-```Cli
-ng add ngxa
-```
-
 ### Usage
 
 ```Typescript
