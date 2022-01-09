@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngxa": {
+    "ngxa-library": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngxa",
+            "outputPath": "dist/ngxa-library",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -80,10 +80,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngxa:build:production"
+              "browserTarget": "ngxa-library:build:production"
             },
             "development": {
-              "browserTarget": "ngxa:build:development"
+              "browserTarget": "ngxa-library:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngxa:build"
+            "browserTarget": "ngxa-library:build"
           }
         },
         "test": {
@@ -117,7 +117,38 @@
           "builder": "angular-cli-ghpages:deploy"
         }
       }
+    },
+    "ngxa": {
+      "projectType": "library",
+      "root": "projects/ngxa",
+      "sourceRoot": "projects/ngxa/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngxa/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngxa/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngxa/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngxa/src/test.ts",
+            "tsConfig": "projects/ngxa/tsconfig.spec.json",
+            "karmaConfig": "projects/ngxa/karma.conf.js"
+          }
+        }
+      }
     }
   },
-  "defaultProject": "ngxa"
+  "defaultProject": "ngxa-library"
 }

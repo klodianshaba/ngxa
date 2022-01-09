@@ -1,22 +1,49 @@
 # NGXA
 
-Ngxa wrapper helps to implement animations easy in angular application\
-Easy builder, Dynamically, Reusable\
-Implements all animations in [Animate.css](https://animate.style/) based on [Angular Animations](https://angular.io/guide/animations)  with the power of NGXA wrapper\
-Reusing single style code functions with different configurations and direction
+Ngxa library helps to build animations easy in angular apps based on [Angular Animations](https://angular.io/guide/animations) \
+Easy builder, Dynamically, Reusable \
+Utility functions based on [Animate.css](https://animate.style/) styles with the power of ngxa library \
+Reusing single style code functions with different configurations
 
 ## Demo
 
 Demo of NGXA is available at [https://klodianshaba.github.io/ngxa](https://klodianshaba.github.io/ngxa)
 
-## Example 
+## Getting Started
 
-Building animation trigger by using buildTrigger function from ngxa:
+### Installation
+
+```Cli
+npm i ngxa --save
+```
+
+Or
+
+```Cli
+ng add ngxa
+```
+
+### Usage
+
+```Typescript
+import { rollIn } from 'ngxa';
+
+@Component({
+  animations: [
+    rollIn({direction:'X'}), // rollInX
+    rollIn({direction:'Y'}) // rollInY
+  ]
+})
+```
+
+## Example Of Building Trigger
+
+Building animation trigger by using buildTrigger function from ngxa
 
 ```Typescript
 import {animate, animation, AnimationTriggerMetadata, keyframes, style} from "@angular/animations";
-import {AnimationConfig} from "./ngxa/common";
-import {buildTrigger} from "./ngxa/base";
+import {AnimationConfig} from "ngxa/common";
+import {buildTrigger} from "ngxa/base";
 
 const FadeKeyFrames: AnimationKeyframesSequenceMetadata = keyframes([
   style({opacity: 0, offset: 0}),
@@ -42,7 +69,7 @@ Now the trigger can be reused anywhere we want just by importing it and Includin
 The trigger function accept an optional configuration parameter to overwrite default AnimationConfig.  
 
 ```Typescript
-import {fadeAnimation} from "./ngxa";
+import {fade} from "./path";
 
 @Component({
   selector: 'app-header',
@@ -50,7 +77,7 @@ import {fadeAnimation} from "./ngxa";
   styleUrls: ['./header.component.scss'],
   animations: [
     // use fadeAnimation and overwrite optional configs
-    fadeAnimation({timings:'0.3s', stateChangeExpressions: [':enter', '0 => 1'], triggerName: 'fadeAnimation'} ) 
+    fade({timings:'0.3s', stateChangeExpressions: [':enter', '0 => 1'], triggerName: 'fadeAnimation'} ) 
   ]
 })
 ```
@@ -67,7 +94,7 @@ Or with dynamic params
 <span [@fadeAnimation]="{value:state,params:{timings:'0.3s'}}">Fade Me</span>
 ```
 
-### Common configuration Interfaces
+### Common Configuration Interfaces
 
 ```Typescript
 export interface AnimationConfig{
@@ -102,13 +129,13 @@ interface RotateInConfig extends AnimationConfig{
 }
 ```
 
-## Utility functions based on Animate.css style
+## Utility functions Based On Animate.css Styles
 
 Each style offers two functions, building trigger and building transition
 
 ### Triggers
 
-Can be used for single style with different configurations and direction
+Can be reused for single style with different configurations
 
 ```Typescript
 import {
@@ -177,7 +204,7 @@ onAnimateIt(): void{
 ```
 ### Transitions
 
-can be included into other triggers with different configurations and direction
+can be included into other triggers with different configurations
 
 ```Typescript
 import {
@@ -223,7 +250,7 @@ export function attentionsAndBounceInStyles(config?: Partial<AnimationConfig>): 
 }
 ```
 
-## Stagger nested animations
+## Stagger Nested Animations
 
 To fire animations into a list can be used staggerNestedAnimations function as a parent animation
 
@@ -277,3 +304,7 @@ npm start
 ## Authors
 
 Klodian Shaba - [klodianshaba](https://github.com/klodianshaba)
+
+## License 
+
+Ngxa library is licensed under the MIT License ~ see the [LICENSE](https://github.com/klodianshaba/ngxa/blob/main/LICENSE)  file for details

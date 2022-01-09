@@ -1,0 +1,42 @@
+{
+  "name": "ngxa",
+  "version": "1.0.0",
+  "description": "Ngxa library helps to build animations easy in angular apps",
+  "author": {
+    "name": "Klodian shaba",
+    "email": "dev.klodian@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Klodian shaba",
+      "email": "dev.klodian@gmail.com"
+    }
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klodianshaba/ngxa.git"
+  },
+  "homepage": "https://github.com/klodianshaba/ngxa",
+  "keywords": [
+    "Angular",
+    "Typescript",
+    "Animations",
+    "Library"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klodianshaba/ngxa/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies"
+  }
+}

@@ -9,6 +9,18 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "paths": {
+      "library": [
+        "dist/library/library",
+        "dist/library"
+      ],
+      "ngxa": [
+        "dist/ngxa/ngxa",
+        "dist/ngxa",
+        "dist/ngxa/ngxa",
+        "dist/ngxa"
+      ]
+    },
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
