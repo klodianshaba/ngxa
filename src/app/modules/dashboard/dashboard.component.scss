@@ -23,6 +23,27 @@
   }
 }
 
+@media (max-height: 800px){
+  .angular-logo{
+    img{
+      width: calc(100vh - 350px);
+    }
+  }
+}
+@media (max-height: 600px){
+  .angular-logo{
+    img{
+      width: calc(100vh - 300px);
+    }
+  }
+}
+@media (max-height: 500px){
+  .angular-logo{
+    img{
+      width: 300px;
+    }
+  }
+}
 @media (max-width: 540px){
   /* CSS stuff */
   .angular-logo{

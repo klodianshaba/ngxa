@@ -30,11 +30,15 @@ mat-sidenav-container{
     //border-right: 1px solid var(--ngxa-color-border);
   }
 }
-@media (max-height: 755px), (max-width: 755px ){
+
+@media (max-height: 500px), (max-width: 755px ){
   /* CSS stuff */
   .animations-content{
     overflow-y: auto;
     height: auto;
+  }
+  .sidenav-content{
+    overflow-y: auto;
   }
 }
 
