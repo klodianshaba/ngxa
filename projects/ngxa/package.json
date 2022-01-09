@@ -1,15 +1,17 @@
 {
   "name": "ngxa",
   "version": "1.0.0",
-  "description": "Ngxa library helps to build animations easy in angular apps",
+  "description": "Ngxa library helps to implement animations easy in angular apps",
   "author": {
     "name": "Klodian shaba",
-    "email": "dev.klodian@gmail.com"
+    "email": "dev.klodian@gmail.com",
+    "url": "https://github.com/klodianshaba"
   },
   "contributors": [
     {
       "name": "Klodian shaba",
-      "email": "dev.klodian@gmail.com"
+      "email": "dev.klodian@gmail.com",
+      "url": "https://www.npmjs.com/~klodianshaba"
     }
   ],
 
