@@ -1,13 +1,16 @@
 
 <div class="description-container" [@staggerNestedAnimations]="status">
   <div class="pb-4" [@bounceInLeft]="status">
-    <span class="fs-1 fw-bold title">Angular Animations Wrapper</span>
+    <span class="fs-1 fw-bold title">Angular Animations Library</span>
   </div>
   <div class="pb-4" [@bounceInLeft]="status">
     <div class="easy-builder pb-4" [@swing]="{value:status, params:{timings:'1500ms'}}">
-      <span>Easy Builder, Dynamically, Reusable and Single style code functions with different configurations</span>
+      <span>
+        Easy Builder, Dynamically And Reusing single style code functions with different configurations <br>
+        Utility functions based on <a class="animate-css text-decoration-none fw-bold" target="_blank" href="https://animate.style/">Animate.css</a> styles with the power of ngxa library
+      </span>
     </div>
-    <span class="fs-5 fw-bold implement-animations">Ngxa wrapper helps to implement animations easy in Angular Application</span>
+    <span class="fs-5 fw-bold implement-animations">Ngxa Library helps to implement animations easy in Angular Application</span>
   </div>
   <button [@bounceInLeft]="status" (click)="onAnimateIt()" mat-raised-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     Animate It
