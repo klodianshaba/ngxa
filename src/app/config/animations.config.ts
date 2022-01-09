@@ -1,6 +1,6 @@
 import {AnimationTriggerMetadata} from "@angular/animations";
-import {AnimationConfig} from "ngxa/common";
-import {buildTrigger} from "ngxa/base";
+import {AnimationConfig} from "ngxa";
+import {buildTrigger} from "ngxa";
 import {
   bounceTransition, flashTransition, pulseTransition, rubberBandTransition, shakeTransition, headShakeTransition,
   swingTransition, tadaTransition, wobbleTransition, jelloTransition, heartBeatTransition,
