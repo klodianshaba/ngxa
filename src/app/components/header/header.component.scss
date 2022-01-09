@@ -6,11 +6,12 @@
 svg{
   width: 50px;
   margin-left: 20px;
+  position: absolute;
 }
 
 .ngxa-container{
   width: 100%;
-  transition: 250ms;
+  transition: 0.3s;
 }
 
 .opened-side-nav{
