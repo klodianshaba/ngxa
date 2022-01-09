@@ -20,12 +20,12 @@ npm i ngxa --save
 ### Usage
 
 ```Typescript
-import { rollIn } from 'ngxa';
+import { roll } from 'ngxa';
 
 @Component({
   animations: [
-    rollIn({direction:'X'}), // rollInX
-    rollIn({direction:'Y'}) // rollInY
+    roll({direction:'In'}), // rollIn
+    roll({direction:'Out'}) // rollOut
   ]
 })
 ```
