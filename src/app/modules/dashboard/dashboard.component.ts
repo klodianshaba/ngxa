@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AnimationGroupModel, AnimationModel} from "../../models";
 import {ActivatedRoute, Router} from "@angular/router";
 import {animations, AnimationGroups} from '../../config'
-import {bounceIn} from "../../../../ngxa";
+import {bounceIn} from "ngxa";
 
 @Component({
   selector: 'app-dashboard',

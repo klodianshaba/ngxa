@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {swing, zoomIn, staggerNestedAnimations,bounceIn} from "../../../../ngxa";
+import {swing, zoomIn, staggerNestedAnimations,bounceIn} from "ngxa";
 
 @Component({
   selector: 'app-description',

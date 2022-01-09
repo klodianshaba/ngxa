@@ -1,6 +1,6 @@
 import {AnimationTriggerMetadata} from "@angular/animations";
-import {AnimationConfig} from "../../../ngxa/common";
-import {buildTrigger} from "../../../ngxa/base";
+import {AnimationConfig} from "ngxa/common";
+import {buildTrigger} from "ngxa/base";
 import {
   bounceTransition, flashTransition, pulseTransition, rubberBandTransition, shakeTransition, headShakeTransition,
   swingTransition, tadaTransition, wobbleTransition, jelloTransition, heartBeatTransition,
@@ -9,14 +9,14 @@ import {
   lightspeedInTransition, lightspeedOutTransition, rotateInTransition, rotateOutTransition,
   hingeTransition, jackInTheBoxTransition, rollTransition, zoomInTransition, zoomOutTransition,
   slideInTransition, slideOutTransition,
-} from "../../../ngxa";
+} from "ngxa";
 
 export function animations(config?: Partial<AnimationConfig>): AnimationTriggerMetadata{
   return buildTrigger(
     {
       triggerName: (config && config.triggerName) || 'animations',
       transitions: [
-        swingTransition({stateChangeExpressions:'* => swing'}),
+        swingTransition({stateChangeExpressions:'* => swing',}),
         bounceTransition({stateChangeExpressions:'* => bounce'}),
         flashTransition({stateChangeExpressions:'* => flash'}),
         headShakeTransition({stateChangeExpressions:'* => headShake'}),

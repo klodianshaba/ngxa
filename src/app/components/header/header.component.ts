@@ -2,7 +2,7 @@ import {Component, Input, OnInit , Output , EventEmitter} from '@angular/core';
 import {Router} from "@angular/router";
 import {Layouts} from "../../models/";
 import {LayoutService} from "../../services/layout.service";
-import {bounceIn, slideIn, slideOut, swing} from "../../../../ngxa";
+import {bounceIn, slideIn, slideOut} from "ngxa";
 import {StateService} from "../../services/state.service";
 
 @Component({

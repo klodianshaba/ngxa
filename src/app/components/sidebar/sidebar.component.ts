@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AnimationGroupModel, AnimationModel} from "../../models";
 import {animations, AnimationGroups } from '../../config'
 import {Router} from "@angular/router";
-import {bounceIn} from "../../../../ngxa";
+import {bounceIn} from "ngxa";
 import {StateService} from "../../services/state.service";
 
 @Component({
