@@ -5,9 +5,8 @@ Easy builder, Dynamically, Reusable \
 Utility functions based on [Animate.css](https://animate.style/) styles with the power of ngxa library \
 Reusing single style code functions with different configurations
 
-## Demo
-
-Demo of NGXA is available at [https://klodianshaba.github.io/ngxa](https://klodianshaba.github.io/ngxa)
+## Quick Links
+[Demo](https://klodianshaba.github.io/ngxa) ~ [Npm Package](https://www.npmjs.com/package/ngxa)
 
 ## Getting Started
 

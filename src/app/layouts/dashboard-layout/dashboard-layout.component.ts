@@ -11,13 +11,13 @@ import {StateService} from "../../services/state.service";
 export class DashboardLayoutComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.state.isSmallScreen.next(this.breakpointObserver.isMatched('(max-width: 1200px)'));
+    this.state.isSmallScreen.next(this.breakpointObserver.isMatched('(max-width: 1100px)'));
   }
   public isSmallScreen: boolean = false;
   public Layouts = Layouts;
   public sideNavStatus: boolean = false;
   constructor(private breakpointObserver: BreakpointObserver, private state: StateService) {
-    this.state.isSmallScreen.next(this.breakpointObserver.isMatched('(max-width: 1200px)'));
+    this.state.isSmallScreen.next(this.breakpointObserver.isMatched('(max-width: 1100px)'));
     this.state.sideNavStatus.subscribe(status => {
       this.sideNavStatus = status;
     });
